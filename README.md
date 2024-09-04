@@ -34,14 +34,14 @@ To use the cuda functionality of pytorch in order to train my models I had use l
 
 ---SPECIFICATIONS---
 
-A) Software Specifications:
+Software Specifications:
 
 1) OS: Linux Ubuntu 22.04.01
 2) Ubuntu Kernel: "6.5.0-18-generic" 
 3) Python Version: 3.10.12
 4) ROCm Version: 6.0.2.60002-115~22.04
 
-B) Hardware Specifications:
+Hardware Specifications:
 
 1) CPU: AMD Ryzen 5 5600
 2) GPU: GIGABYTE AORUS AMD RX6750XT 12G VRAM
