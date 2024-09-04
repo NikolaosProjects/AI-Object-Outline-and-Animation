@@ -7,11 +7,11 @@ This project consists of training and then implementing two different image segm
 
 I used my model to extract the outlines of:
 
-a) A Cat
-b) A Car
-c) An Airplane
-d) A Tree
-e) A Mountain
+ A Cat
+ A Car
+ An Airplane
+ A Tree
+ A Mountain
 
 ---ALGORITHM EXPLANATION---
 
