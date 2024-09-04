@@ -1,4 +1,4 @@
-# AI: Object Outline Animation
+# ARTIFICIAL INTELLIGENCE PROJECT: Animating The Outlines Of Objects Using Image Segmentation Models
 
 ---DESCRIPTION
 
