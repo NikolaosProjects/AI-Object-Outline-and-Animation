@@ -9,7 +9,7 @@ I used my model to extract the outlines of:
 
 1. A Cat
 2. A Car
-3. A Airplane
+3. An Airplane
 4. A Tree
 5. A Mountain
 
