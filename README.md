@@ -1,4 +1,4 @@
-# AI-Object-Outline-and-Animation
+# AI: Object Outline Animation
 
 ---DESCRIPTION
 
