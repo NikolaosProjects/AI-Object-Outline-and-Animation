@@ -1,9 +1,17 @@
-#               ARTIFICIAL INTELLIGENCE PROJECT
+#################ARTIFICIAL INTELLIGENCE PROJECT
 # Animating The Outlines Of Objects Using Image Segmentation Models
 
 ---DESCRIPTION---
 
 This project consists of training and then implementing two different image segmentation artificial intelligence models, in order to provide the outline of objects in images. The Fourier Coefficients of these outlines are extracted, converted to rotating vectors in the complex plane, and then animated.
+
+I used my model to extract the outlines of:
+
+a) A Cat
+b) A Car
+c) An Airplane
+d) A Tree
+e) A Mountain
 
 ---ALGORITHM EXPLANATION---
 
