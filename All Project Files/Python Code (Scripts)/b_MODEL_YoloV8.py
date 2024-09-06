@@ -42,7 +42,7 @@ def download_model_to_tempfile(url):
         return temp_file_path
 
 # Set Device to GPU
-device = torch.device("cpu")
+device = torch.device("cuda")
 
 # URL of the YOLOv8 model
 model_url = "https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/AI%20Model/yolov8s-seg.pt"
