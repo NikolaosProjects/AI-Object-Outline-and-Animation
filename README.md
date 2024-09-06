@@ -4,7 +4,7 @@
 
 
 
-<table style="border-collapse: collapse; width: 100%;">
+<table style="border-collapse: collapse; width: 100%; border-spacing: 0; margin: 0; padding: 0;">
   <tr>
     <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Outline%20Animation.gif" alt="GIF 1" style="width: 100%; display: block;" /></td>
     <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/2.%20Car/Car%20Outline%20Animation.gif" alt="GIF 2" style="width: 100%; display: block;" /></td>
