@@ -1,6 +1,17 @@
 #              ARTIFICIAL INTELLIGENCE PROJECT
 # Animating The Outlines Of Objects Using Image Segmentation Models
 
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Outline%20Animation.gif" alt="GIF 1" style="width: 25%; margin-right: 10px;" />
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20Outline%20Animation.gif" alt="GIF 2" style="width: 25%; margin-right: 10px;" />
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Outline%20Animation.gif" alt="GIF 3" style="width: 25%;" />
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Outline%20Animation.gif" alt="GIF 3" style="width: 25%;" />
+</div>
+
+
+
+
+
 [---DESCRIPTION---]
 
 This project consists of training and then implementing an image segmentation artificial intelligence model, in order to provide the outline of objects in images. The Fourier Coefficients of these outlines are extracted, converted to rotating vectors in the complex plane, and then animated.
