@@ -1,5 +1,5 @@
 #              ARTIFICIAL INTELLIGENCE PROJECT
-# Animating The Outlines Of Objects Using Image Segmentation Models
+# Animating The Outlines Of Objects Using an Image Segmentation Model
 
 
 <table style="border-collapse: collapse; width: 100%; border-spacing: 0; margin: 0; padding: 0;">
