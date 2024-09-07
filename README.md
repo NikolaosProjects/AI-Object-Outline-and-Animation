@@ -30,7 +30,7 @@
 
 This project consists of training and then implementing an image segmentation artificial intelligence model, in order to provide the outline of objects in images. The Fourier Coefficients of these outlines are extracted, converted to rotating vectors in the complex plane, and then animated.
 
-I used my models to animate the outlines of:
+I used my model to animate the outlines of:
 
 1. A Cat
 2. A Car
