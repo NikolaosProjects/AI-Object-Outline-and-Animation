@@ -1,5 +1,5 @@
-#              ARTIFICIAL INTELLIGENCE PROJECT
-# Animating The Outlines Of Objects Using an Image Segmentation Model
+#               Image Recognition and Training
+# Animating The Outlines Of Objects Using AI Image Segmentation
 
 
 <table style="border-collapse: collapse; width: 100%; border-spacing: 0; margin: 0; padding: 0;">
