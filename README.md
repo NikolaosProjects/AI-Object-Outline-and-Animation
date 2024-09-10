@@ -1,23 +1,22 @@
 #               Image Recognition and Training
 # Animating The Outlines Of Objects Using AI Image Segmentation
 
-
-<table style="border-collapse: collapse; width: 100%; border-spacing: 0; margin: 0; padding: 0;">
+<table>
   <tr>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Image.png" alt="GIF 1" style="width: 100%; display: block;" /></td>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/2.%20Car/Car%20Image.png" alt="GIF 2" style="width: 100%; display: block;" /></td>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Image.png" alt="GIF 3" style="width: 100%; display: block;" /></td>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Image.png" alt="GIF 4" style="width: 100%; display: block;" /></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Image.png" alt="Cat Image" width="400"></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/2.%20Car/Car%20Image.png" alt="Car Image" width="400"></td>
   </tr>
-</table>
-
-
-<table style="border-collapse: collapse; width: 100%; border-spacing: 0; margin: 0; padding: 0;">
   <tr>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Outline%20Animation.gif" alt="GIF 1" style="width: 100%; display: block;" /></td>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/2.%20Car/Car%20Outline%20Animation.gif" alt="GIF 2" style="width: 100%; display: block;" /></td>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Outline%20Animation.gif" alt="GIF 3" style="width: 100%; display: block;" /></td>
-    <td style="padding: 0; border: none;"><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Outline%20Animation.gif" alt="GIF 4" style="width: 100%; display: block;" /></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Image.png" alt="Plane Image" width="400"></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Image.png" alt="Bicycle Image" width="400"></td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Image.png" alt="Cat Image" width="400"></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/2.%20Car/Car%20Image.png" alt="Car Image" width="400"></td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Image.png" alt="Plane Image" width="400"></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Image.png" alt="Bicycle Image" width="400"></td>
   </tr>
 </table>
 
