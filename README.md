@@ -86,6 +86,6 @@ The outline of the object in the form of complex points, and the distribution of
 
 Since the fourier coefficients are vectors in the complex plane, and have a specific frequency associated with them, we can make them rotate aroung the origin. if we pair them tip to tail, and make each vector rotate about the point of the previous vector, tracing the path of the last vector's tip results in tracing the object's outline, given a sufficiencly large number fourier coefficients (number of rotating vectors), to ensure accuracy.
 
+Using the python module Manim, it is relatively easy to achieve this. We use the fourier coefficients' coordinates to define a vector corresponding to each coevvifient, and then define its angular velocity (rate of rotation) using omega = 2*pi*f. Manim creates an animation by updating a dt variable, where dt is the amount of time in seconds between frames (60fps means dt = 1/60s). To make the vectors rotate, we need to update their position after time dt. to do that, we make them rotate by an angle theta, defined by their frequency. Mathematically, a vector roating at frequency f, after time duration dt, will roate by an angle: theta = omega*dt => theta = 2*pi*f*dt.
 
-
-
+After each frame, we update the positions of each vector, by rotating it with its corresponding angle theta. To make the animations go faster, we multiplied the frequency of each vector by 500 (it litearlly makes every signle vector rotate 500 times faster).
