@@ -40,9 +40,13 @@
 
 For this project, I trained an image segmentation model to accurately identify and trace the outlines of Cats, Cars, Planes, and Bicycles. I converted these borders into points in the complex plane, and analyzed them using Fourier Analysis. I used the fourier coefficients and their frequencies as rotating vectors, and used their rotation to trace the outline they originated from.
 
+<h1 align="center"></h1>
+
 <h3 align="left">Artificial Intelligence Model</h3>
 
 I used the untrained YOLOv8s-seg model from Ultralytics (https://docs.ultralytics.com/tasks/segment), which is an Artificial Intelligence image detection and segmentation model. When provided with an image, it can identify objects from up to 80 different categories. Additionally, it can detect the location of these objects in the image, and identify their exact borders. For my project I wanted to provide my own training to the model.
+
+<h1 align="center"></h1>
 
 <h3 align="left">Model Training</h3>
 
