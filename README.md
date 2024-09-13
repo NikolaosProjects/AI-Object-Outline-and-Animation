@@ -76,7 +76,7 @@ At this point, using CV2 (image and color processing module), and the output of 
 
 <h3 align="left"><b>Fourier Analysis</b></h3>
 
-At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fouruier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the Fourier coefficients (also complex points (x, iy)) as well as their frequencies, matches them and places them symmetrically around f = 0hz.
+At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fourier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the outline's Fourier coefficients (complex vectors (x, iy)) as well as their associated frequencies. It then pairs them correctly, and places them symmetrically around f = 0hz.
 
 The outline of the object in the form of complex points, and the distribution of fourier coefficients' magnitude given their frequency are returned to the user.
 
@@ -84,4 +84,8 @@ The outline of the object in the form of complex points, and the distribution of
 
 <h3 align="left"><b>Outline Animation</b></h3>
 
-Since the fourier coefficients are also 
+Since the fourier coefficients are vectors in the complex plane, and have a specific frequency associated with them, we can make them rotate aroung the origin. if we pair them tip to tail, and make each vector rotate about the point of the previous vector, tracing the path of the last vector's tip results in tracing the object's outline, given a sufficiencly large number fourier coefficients (number of rotating vectors), to ensure accuracy.
+
+
+
+
