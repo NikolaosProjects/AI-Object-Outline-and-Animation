@@ -1,3 +1,4 @@
+<h1 align="center"></h1>
 <h1 align="center"><b>Animating Outlines: AI & Fourier Series</b></h1>
 <h1 align="center"></h1>
 
@@ -31,7 +32,6 @@
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Outline%20Animation.gif" alt="Bicycle Animation Gif" width="49%" height="300px" style="object-fit: cover;">
 </div>
 
-<h1 align="center"></h1>
 <h1 align="center"></h1>
 <h1 align="center"></h1>
 
