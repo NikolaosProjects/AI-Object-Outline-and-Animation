@@ -24,7 +24,7 @@
 
 <h1 align="center"></h1>
 
-<h4 align="center">BICYCLE</h4>
+<h3 align="center">BICYCLE</h3>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Image.png" alt="Bicycle Image" width="49%" height="300px" style="object-fit: cover;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Outline%20Animation.gif" alt="Bicycle Animation Gif" width="49%" height="300px" style="object-fit: cover;">
