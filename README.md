@@ -1,4 +1,6 @@
 <h1 align="center">Animating Outlines: AI & Fourier Series</h1>
+<h1 align="center"></h1>
+<h1 align="center"></h1>
 
 <h3 align="center">CAT</h3>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
