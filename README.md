@@ -40,11 +40,11 @@
 
 For this project, I trained an image segmentation model to accurately identify and trace the outlines of Cats, Cars, Planes, and Bicycles. I converted these borders into points in the complex plane, and analyzed them using Fourier Analysis. I used the fourier coefficients and their frequencies as rotating vectors, and used their rotation to trace the outline they originated from.
 
-<h4 align="left">Artificial Intelligence Model</h4>
+<h3 align="left">Artificial Intelligence Model</h3>
 
 I used the untrained YOLOv8s-seg model from Ultralytics (https://docs.ultralytics.com/tasks/segment), which is an Artificial Intelligence image detection and segmentation model. When provided with an image, it can identify objects from up to 80 different categories. Additionally, it can detect the location of these objects in the image, and identify their exact borders. For my project I wanted to provide my own training to the model.
 
-<h4 align="left">Model Training</h4>
+<h3 align="left">Model Training</h3>
 
 For my training purposes I used the COCO2017 Train and Validation images (https://cocodataset.org/#download). Each of these images has a unique name, and the dataset is accompanied "annotations", which are .json files that list all the objects in the image, and define the outlines of these objects as sets of (x,y) points. I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail compared to the stock COCO2017 annotations.
 
