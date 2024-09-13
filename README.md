@@ -1,4 +1,4 @@
-<h1 align="center">**Animating Outlines: AI & Fourier Series**</h1>
+<h1 align="center"><b></b>Animating Outlines: AI & Fourier Series</b></h1>
 <h1 align="center"></h1>
 <h1 align="center"></h1>
 
