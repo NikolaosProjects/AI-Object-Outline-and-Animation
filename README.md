@@ -1,4 +1,4 @@
-<h1 align="center">ANIMATING OUTLINE DRAWING USING AI OBJECT DETECTION AND FOURIER ANALYSIS</h1>
+<h1 align="center">Outline Animations: AI Object Detection & Fourier Analysis</h1>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Image.png" alt="Cat Image" width="49%" height="300px" style="object-fit: cover;">
