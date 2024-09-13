@@ -56,4 +56,10 @@ The YOLOv8s-seg model cannot read through the .json "annotations" file that cont
 
 During the training procedure, the model passes through the large set of train images, examining each picture and its corresponding .txt file. After a full pass, its performance is evaluated by comparing its own inference on objects of the validation images, with the exact attributes of these objects as defines in the .txt annotation files. This cycle constitutes one "epoch". I trained my model on 100 epochs.
 
+<h1 align="center"></h1>
 
+<h3 align="left"><b>Fourier Analysis</b></h3>
+
+<h1 align="center"></h1>
+
+<h3 align="left"><b>Outline Animation</b></h3>
