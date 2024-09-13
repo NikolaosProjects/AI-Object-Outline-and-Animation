@@ -46,7 +46,7 @@ I used the untrained YOLOv8s-seg model from Ultralytics (https://docs.ultralytic
 
 <h3 align="left"><b>Model Training</b></h3>
 
-For my project I wanted to provide my own training to the model, with the goal of identifying Cats, Cars, Planes and Bicycles. I used Train and Validation images from the COCO2017 dataset (https://cocodataset.org/#download). Each of these images' name is a unique ID and the dataset is accompanied by "annotations". These are .json files which link each image's unique ID with a list of all the objects in that image, as well as the outlines of these objects as sets of (x, y) points (coordinates). One annotations file can contain the IDs and properties of thousands of images. 
+For my project I wanted to provide my own training to the model, with the goal of identifying Cats, Cars, Planes and Bicycles. I used Train and Validation images from the COCO2017 dataset (https://cocodataset.org/#download). Each of these images' name is a unique ID and the dataset is accompanied by "annotations". These are .json files which link each image's unique ID with a list of all the objects in that image, as well as the outlines of these objects as sets of (x, y) points (coordinates). One "annotations" file can contain the IDs and properties of thousands of images. 
 
 I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail compared to the stock COCO2017 annotations.
 
