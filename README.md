@@ -58,8 +58,30 @@ During the training procedure, the model passes through the large set of train i
 
 <h1 align="center"></h1>
 
+<h3 align="left"><b>Using the Trained YOLOv8s-seg</b></h3>
+
+After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link, and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
+
+The user can set the main variable at the top of the script to the image they wish to analyze (options are: 1 for Cat, 2 for Car, 3 for Plane, 4 for Bicycle).
+
+The script automatically loads the appropriate picture using a link to my github (no need to download the picture), sets all the graph and animation parameters for the specific picture, and presents the selected image to the user.
+
+The image's dimensions are changed to 640x640. The resized image is then converted into a format of (channel, height, width), its values changed to float for higher accuracy, and then changed to appear as a batch of size 1. After setting these parameters, we turn the image into a tensor, and divide by 255 in order to have the range of RGB values describing the image, set between 0 and 1. These are very important parameters that the model needs in order to be able to analyze the picture.
+
+The model processes the image, and the processed image is returned to the user with the detected object highlighted in red color. 
+
+At this point, using CV2 (image and color processing module), and the output of the model, the script identifies the coordinates of the object's boundary, and stores these coordinates as a list of complex (imaginary) points in the form of (x + iy).
+
+<h1 align="center"></h1>
+
 <h3 align="left"><b>Fourier Analysis</b></h3>
+
+At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fouruier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the Fourier coefficients (also complex points (x, iy)) as well as their frequencies, matches them and places them symmetrically around f = 0hz.
+
+The outline of the object in the form of complex points, and the distribution of fourier coefficients' magnitude given their frequency are returned to the user.
 
 <h1 align="center"></h1>
 
 <h3 align="left"><b>Outline Animation</b></h3>
+
+Since the fourier coefficients are also 
