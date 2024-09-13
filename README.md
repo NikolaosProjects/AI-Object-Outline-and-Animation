@@ -1,6 +1,6 @@
-<div style="text-align: center; margin-bottom: 20px;">
-  <h2 style="display: inline-block; text-align: center; width: 100%;">Tracing Object Outines Using AI Object Detection and Fourier Analysis</h2>
-</div>
+<center>
+  <h2>Tracing Object Outines Using AI Object Detection and Fourier Analysis</h2>
+</center>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Image.png" alt="Cat Image" width="49%" height="300px" style="object-fit: cover;">
