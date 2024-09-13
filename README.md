@@ -1,5 +1,5 @@
 <div style="text-align: center; margin-bottom: 20px;">
-  <h2>Tracing Object Outines Using AI Object Detection and Fourier Analysis</h2>
+  <h2 style="display: inline-block; text-align: center; width: 100%;">Tracing Object Outines Using AI Object Detection and Fourier Analysis</h2>
 </div>
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
