@@ -50,9 +50,8 @@ For my project I wanted to provide my own training to the model, with the goal o
 
 I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail compared to the stock COCO2017 annotations. This dataset's annotations contains several .json files. I started by merging all the "training" immages' annotations into one .json file, and all the "validation" images' annotations into one .json file.
 
-<h1 align="center"></h1>
 <details>
-  <summary> Click for Code </summary>
+  <summary>🔹 Click for Code </summary>
   
   ```python
   import json
@@ -84,14 +83,10 @@ I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as th
 ```
 </details>
 
-<h1 align="center"></h1>
-
 The COCO2017 dataset consists of around 181,000 images. For my training purposes, I only wanted the images that contained Cats, Cars, Planes, and Bicycles. I went through the .json "annotations" file, and extracted the image IDs and object details for only the pictures from the COCO dataset that contained the desired objects. I used that information to create new filtered "annotations" files (containing only the image IDs and details for the desired categories), and duplicated the images of interest into a new folder. That is how I created my custom training dataset's images and annotations.
 
-<h1 align="center"></h1>
-
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
   
   ```python
   # THIS FOLLOWS AFTER DEFINING THE PATH VARIABLES (SEE SCRIPT IN REPOSITORY)
@@ -181,14 +176,10 @@ The COCO2017 dataset consists of around 181,000 images. For my training purposes
   ```
 </details>
 
-<h1 align="center"></h1>
-
 The YOLOv8s-seg model cannot read through the .json "annotations" file that contains all the image IDs and their attributes. It needs a unique .txt text file for each image, that is named exactly the same as the image ID, and contains the details of all objects contained in that specific image. Using a script by z00bean (https://github.com/z00bean/coco2yolo-seg), i went through my filtered dataset "annotations" and created a text file for each of my filtered images, with each of the text files containing all the attributes of its contained objects. This is z00bean's script:
 
-<h1 align="center"></h1>
-
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
   def convert_coco_to_yolo_segmentation(json_file, folder_name="labels"):
@@ -250,13 +241,10 @@ The YOLOv8s-seg model cannot read through the .json "annotations" file that cont
   ```
 </details>
 
-<h1 align="center"></h1>
 During the training procedure, the model passes through the large set of train images, examining each picture and its corresponding .txt file. After a full pass, its performance is evaluated by comparing its own inference on objects of the validation images, with the exact attributes of these objects as defines in the .txt annotation files. This cycle constitutes one "epoch". I trained my model on 100 epochs.
 
-<h1 align="center"></h1>
-
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
   from ultralytics import YOLO
@@ -288,7 +276,7 @@ During the training procedure, the model passes through the large set of train i
 After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link (stores the weights on a temp file and deletes them after the program executes), and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
 
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -347,7 +335,7 @@ After training my model, I uploaded the weights (model's training knowledge) on 
 The user can set the main variable at the top of the script to the image they wish to analyze (options are: 1 for Cat, 2 for Car, 3 for Plane, 4 for Bicycle).
 
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -382,7 +370,7 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
 </table>
 
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
   def selection(choice):
@@ -458,7 +446,7 @@ These are very important parameters that the model needs to have defined correct
 The model processes the image and returns a "segmentation mask". A "segmentation mask" is a 2-D array of 0s and 1s. The dimensions of this array are exactly the same as the dimensions of the original image. The 0s and 1s represent if the object is present on that part of the image (1) or not (0). The model determines the location of every pixel that belongs to the object, and places a "1" at the location of every such pixel in a 2-D array having the same height and width as the picture. For further processing, these masks need to be transfered to the CPU, if GPU was used for object detection.
 
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -484,7 +472,7 @@ I went through all the values in the properly sized segmentation mask, and set a
 NOTE: As stated previously, the user needs to close this image for the program to continue.
 
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
   # Loop through each resized mask and draw filled translucent contours
@@ -516,7 +504,7 @@ NOTE: As stated previously, the user needs to close this image for the program t
 </table>
 
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -529,10 +517,8 @@ NOTE: As stated previously, the user needs to close this image for the program t
 
 At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fourier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the outline's Fourier coefficients (complex vectors (x, iy)) as well as their associated frequencies. It then pairs them correctly, and places them symmetrically around f = 0hz.
 
-<h1 align="center"></h1>
-
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -540,15 +526,11 @@ At this stage, our outline is converted into a discrete set of data in the compl
 
   ```
 </details>
-
-<h1 align="center"></h1>
 
 The outline of the object in the form of complex points, and the distribution of fourier coefficients' magnitude given their frequency are returned to the user.
 
-<h1 align="center"></h1>
-
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -557,11 +539,9 @@ The outline of the object in the form of complex points, and the distribution of
   ```
 </details>
 
-<h1 align="center"></h1>
 
 FOURIER IMAGES GO HERE
 
-<h1 align="center"></h1>
 
 <h3 align="center"><b>🔺OUTLINE ANIMATION🔺</b></h3>
 
@@ -569,10 +549,9 @@ Since the fourier coefficients are vectors in the complex plane, and have a spec
 
 Using the python module Manim, it is relatively easy to achieve this. We use the fourier coefficients' coordinates to define a vector corresponding to each coefficient, and then define its angular velocity (rate of rotation) using omega = 2*pi*f. Manim creates an animation by updating a dt variable, where dt is the amount of time in seconds between frames (60fps means dt = 1/60s). To make the vectors rotate, we need to update their position after time dt. to do that, we make them rotate by an angle theta, defined by their frequency. Mathematically, a vector roating at frequency f, after time duration dt, will roate by an angle: theta = omega*dt => theta = 2*pi*f*dt.
 
-<h1 align="center"></h1>
 
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -580,15 +559,11 @@ Using the python module Manim, it is relatively easy to achieve this. We use the
 
   ```
 </details>
-
-<h1 align="center"></h1>
 
 After each frame, we update the positions of each vector, by rotating it with its corresponding angle theta. To make the animations go faster, we multiplied the frequency of each vector by 500 (it litearlly makes every signle vector rotate 500 times faster).
 
-<h1 align="center"></h1>
-
 <details>
-  <summary>Click for Code</summary>
+  <summary>🔹Click for Code</summary>
 
   ```python
 
@@ -596,7 +571,5 @@ After each frame, we update the positions of each vector, by rotating it with it
 
   ```
 </details>
-
-<h1 align="center"></h1>
 
 MANIM GIFS GO HERE
