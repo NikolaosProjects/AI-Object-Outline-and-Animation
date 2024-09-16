@@ -372,7 +372,13 @@ selected_image_for_processing = 1                         #
 
 <h1 align="center"></h1>
 
-The script automatically loads the appropriate picture using a link to my github (no need to download the picture), sets all the graph and animation parameters for the specific picture, and presents the selected image to the user.
+The script automatically loads the appropriate picture using a link to my github (no need to download the picture). The image is read from the URL in a raw byte data form, where the information regarding the color of each pixel cannot be interpreted by a human or by the AI model. I converted each of these raw bytes to an integer using numpy arrays. That way, the information for the pixel of each image was represented by a number (0-255 BGR form, converted to RGB using CV2) that could be used to display the image, and also to be processed by the AI model.
+
+CV2 is the library that was used to convert the integer RGB values into their corresponding color, and to then display the image. This process creates an outter array of dimensions equal to the image's resolution (for example for a 640x640 pixel image, the corresponding CV2 list would be a 640 column by 640 row array). Each entry in this outter array represents each of the picture's pixels. Each one of these entries (each pixel), is defined as an individual list of 3 elements. Element 1 is the intensity of Red color for that pixel. Element 2 is the intensity of Green color for that pixel, and element 3 is the intensity of Blue color for that pixel. Thus, ach entry of the outter 640 x 640 array represents the color for each pixel in the given image. This is a very important detail, as that means that the image is represented by a tensor. 
+
+After this important converson, I defined a function which sets all the graph and animation parameters for the specific picture. The reformated image is then presented to the user.
+
+NOTE: to allow the program to continue, any plot that pops up needs to be closed first. 
 
 <table>
   <tr>
@@ -455,7 +461,17 @@ The script automatically loads the appropriate picture using a link to my github
 
 <h1 align="center"></h1>
 
-The image's dimensions are changed to 640x640. The resized image is then converted into a format of (channel, height, width), its values changed to float for higher accuracy, and then changed to appear as a batch of size 1. After setting these parameters, we turn the image into a tensor, and divide by 255 in order to have the range of RGB values describing the image, set between 0 and 1. These are very important parameters that the model needs in order to be able to analyze the picture.
+After the image's conversion to an array, I changed its dimensions to 640x640 again using CV2.
+
+I converted the resized image into a format of (channel, height, width), I changed its values to float for higher accuracy, and then made it appear as a batch of size 1. After setting these parameters, I turned the image into a tensor, which I divided by 255 in order to have the range of RGB values describing the image set between 0 and 1. 
+
+These are very important parameters that the model needs to have defined correctly, in order to be able to analyze the picture.
+
+The model processes the image,
+
+Using CV2 and the output of the model, the script identifies the coordinates of the object's boundary, and stores these coordinates as a list of complex (imaginary) points in the form of (x + iy).
+
+and the processed image is returned to the user with the detected object highlighted in red color. 
 
 <h1 align="center"></h1>
 
@@ -471,15 +487,7 @@ The image's dimensions are changed to 640x640. The resized image is then convert
 
 <h1 align="center"></h1>
 
-The model processes the image, and the processed image is returned to the user with the detected object highlighted in red color. 
-
 PICTURES GO HERE
-
-<h1 align="center"></h1>
-
-
-At this point, using CV2 (image and color processing module), and the output of the model, the script identifies the coordinates of the object's boundary, and stores these coordinates as a list of complex (imaginary) points in the form of (x + iy).
-
 
 <h1 align="center"></h1>
 
