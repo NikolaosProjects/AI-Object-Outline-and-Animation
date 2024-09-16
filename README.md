@@ -382,10 +382,10 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
 
 <table>
   <tr>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="200"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="200"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="200"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="250"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="250"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="250"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="250"/></td>
   </tr>
 </table>
 
@@ -529,10 +529,10 @@ NOTE: As stated previously, the user needs to close this image for the program t
 
 <table>
   <tr>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20AI%20Highlighted.png" alt="Cat AI Highlighted" style="width: 200px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20AI%20Highlighted.png" alt="Car AI Highlighted" style="width: 200px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20AI%20Highlighted.png" alt="Plane AI Highlighted" style="width: 200px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20AI%20Highlighted.png" alt="Bicycle AI Highlighted" style="width: 200px;"></td>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20AI%20Highlighted.png" alt="Cat AI Highlighted" style="width: 250px;"></td>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20AI%20Highlighted.png" alt="Car AI Highlighted" style="width: 250px;"></td>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20AI%20Highlighted.png" alt="Plane AI Highlighted" style="width: 250px;"></td>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20AI%20Highlighted.png" alt="Bicycle AI Highlighted" style="width: 250px;"></td>
   </tr>
 </table>
 
