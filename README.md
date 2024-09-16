@@ -92,6 +92,7 @@ The COCO2017 dataset consists of around 181,000 images. For my training purposes
 
 <details>
   <summary>Click to expand Python code</summary>
+  
   ```python
   # THIS FOLLOWS AFTER DEFINING THE PATH VARIABLES (SEE SCRIPT IN REPOSITORY)
   # Helper function to filter annotations and images
@@ -186,90 +187,100 @@ The YOLOv8s-seg model cannot read through the .json "annotations" file that cont
 
 <h1 align="center"></h1>
 
-```python
-def convert_coco_to_yolo_segmentation(json_file, folder_name="labels"):
-    folder_name = folder_name
-    # Load the JSON file
-    with open(json_file, 'r') as file:
-        coco_data = json.load(file)
+<details>
+  <summary>Click to expand Python code</summary>
 
-    # Create a "labels" folder to store YOLO segmentation annotations
-    output_folder = os.path.join(os.path.dirname(json_file), folder_name)
-    os.makedirs(output_folder, exist_ok=True)
+  ```python
+  def convert_coco_to_yolo_segmentation(json_file, folder_name="labels"):
+      folder_name = folder_name
+      # Load the JSON file
+      with open(json_file, 'r') as file:
+          coco_data = json.load(file)
+  
+      # Create a "labels" folder to store YOLO segmentation annotations
+      output_folder = os.path.join(os.path.dirname(json_file), folder_name)
+      os.makedirs(output_folder, exist_ok=True)
+  
+      # Extract annotations from the COCO JSON data
+      annotations = coco_data['annotations']
+      for annotation in annotations:
+          image_id = annotation['image_id']
+          category_id = annotation['category_id']
+          segmentation = annotation['segmentation']
+          bbox = annotation['bbox']
+  
+          # Find the image filename from the COCO data
+          for image in coco_data['images']:
+              if image['id'] == image_id:
+                  image_filename = os.path.basename(image['file_name'])
+                  image_filename = os.path.splitext(image_filename)[0] # Removing the extension. (In our case, it is the .jpg or .png part.)
+                  image_width = image['width']
+                  image_height = image['height']
+                  break
+  
+          # Calculate the normalized center coordinates and width/height
+          x_center = (bbox[0] + bbox[2] / 2) / image_width
+          y_center = (bbox[1] + bbox[3] / 2) / image_height
+          bbox_width = bbox[2] / image_width
+          bbox_height = bbox[3] / image_height
+  
+          # Check if segmentation is a list of lists (polygon) or RLE
+          if isinstance(segmentation, list):
+              # Convert COCO segmentation to YOLO segmentation format
+              yolo_segmentation = [f"{(x) / image_width:.5f} {(y) / image_height:.5f}" for x, y in zip(segmentation[0][::2], segmentation[0][1::2])]
+              yolo_segmentation = ' '.join(yolo_segmentation)
+          else:
+              continue
+  
+          # Generate the YOLO segmentation annotation line
+          yolo_annotation = f"{category_id} {yolo_segmentation}"
+  
+          # Save the YOLO segmentation annotation in a file
+          output_filename = os.path.join(output_folder, f"{image_filename}.txt")
+          with open(output_filename, 'a+') as file:
+              file.write(yolo_annotation + '\n')
+  
+      print("Conversion completed")
+  
+  #change train annotations to yolo format
+  convert_coco_to_yolo_segmentation(filtered_train_annotations_path, YOLO_train_annotations)
+  
+  #change val annotaions to yolo format
+  convert_coco_to_yolo_segmentation(filtered_val_annotations_path, YOLO_val_annotations)
+  ```
+</details>
 
-    # Extract annotations from the COCO JSON data
-    annotations = coco_data['annotations']
-    for annotation in annotations:
-        image_id = annotation['image_id']
-        category_id = annotation['category_id']
-        segmentation = annotation['segmentation']
-        bbox = annotation['bbox']
-
-        # Find the image filename from the COCO data
-        for image in coco_data['images']:
-            if image['id'] == image_id:
-                image_filename = os.path.basename(image['file_name'])
-                image_filename = os.path.splitext(image_filename)[0] # Removing the extension. (In our case, it is the .jpg or .png part.)
-                image_width = image['width']
-                image_height = image['height']
-                break
-
-        # Calculate the normalized center coordinates and width/height
-        x_center = (bbox[0] + bbox[2] / 2) / image_width
-        y_center = (bbox[1] + bbox[3] / 2) / image_height
-        bbox_width = bbox[2] / image_width
-        bbox_height = bbox[3] / image_height
-
-        # Check if segmentation is a list of lists (polygon) or RLE
-        if isinstance(segmentation, list):
-            # Convert COCO segmentation to YOLO segmentation format
-            yolo_segmentation = [f"{(x) / image_width:.5f} {(y) / image_height:.5f}" for x, y in zip(segmentation[0][::2], segmentation[0][1::2])]
-            yolo_segmentation = ' '.join(yolo_segmentation)
-        else:
-            continue
-
-        # Generate the YOLO segmentation annotation line
-        yolo_annotation = f"{category_id} {yolo_segmentation}"
-
-        # Save the YOLO segmentation annotation in a file
-        output_filename = os.path.join(output_folder, f"{image_filename}.txt")
-        with open(output_filename, 'a+') as file:
-            file.write(yolo_annotation + '\n')
-
-    print("Conversion completed")
-
-#change train annotations to yolo format
-convert_coco_to_yolo_segmentation(filtered_train_annotations_path, YOLO_train_annotations)
-
-#change val annotaions to yolo format
-convert_coco_to_yolo_segmentation(filtered_val_annotations_path, YOLO_val_annotations)
-```
 <h1 align="center"></h1>
 During the training procedure, the model passes through the large set of train images, examining each picture and its corresponding .txt file. After a full pass, its performance is evaluated by comparing its own inference on objects of the validation images, with the exact attributes of these objects as defines in the .txt annotation files. This cycle constitutes one "epoch". I trained my model on 100 epochs.
 
 <h1 align="center"></h1>
 
-```python
-from ultralytics import YOLO
+<details>
+  <summary>Click to expand Python code</summary>
 
-# Load YOLOv8 segmentation model
-model = YOLO('yolov8s_seg.yaml')  # Load untrained model (performs segmentation but is completely untrained)
+  ```python
+  from ultralytics import YOLO
+  
+  # Load YOLOv8 segmentation model
+  model = YOLO('yolov8s_seg.yaml')  # Load untrained model (performs segmentation but is completely untrained)
+  
+  # Train the model using your dataset and specific classes
+  model.train(
+      data='/home/nick/Coding/venv/2. AI Training Files/YOLOv8s-seg/config.yaml',  # Dataset YAML
+      epochs=100,      # Number of epochs
+      imgsz=1024,       # Image size
+      batch=10,        # Batch size
+      workers=4,       # Data loaders
+      device=0,        # GPU (set to 'cpu' if needed)
+      name='path to trained weights folder',  # Save path of new training
+      resume=True,  # Specify the checkpoint file
+      cache=0,
+      lr0=0.005,
+      lrf=0.0005
+  )
+  ```
+</details>
 
-# Train the model using your dataset and specific classes
-model.train(
-    data='/home/nick/Coding/venv/2. AI Training Files/YOLOv8s-seg/config.yaml',  # Dataset YAML
-    epochs=100,      # Number of epochs
-    imgsz=1024,       # Image size
-    batch=10,        # Batch size
-    workers=4,       # Data loaders
-    device=0,        # GPU (set to 'cpu' if needed)
-    name='path to trained weights folder',  # Save path of new training
-    resume=True,  # Specify the checkpoint file
-    cache=0,
-    lr0=0.005,
-    lrf=0.0005
-)
-```
 <h1 align="center"></h1>
 
 <h3 align="left"><b>Using the Trained YOLOv8s-seg</b></h3>
