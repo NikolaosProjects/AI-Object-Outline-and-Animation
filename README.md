@@ -52,7 +52,7 @@ I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as th
 
 <h1 align="center"></h1>
 <details>
-  <summary>Click to expand Python code</summary>
+  <summary>🔴 Click to View Code</summary>
   
   ```python
   import json
@@ -91,7 +91,7 @@ The COCO2017 dataset consists of around 181,000 images. For my training purposes
 <h1 align="center"></h1>
 
 <details>
-  <summary>Click to expand Python code</summary>
+  <summary>🔴 Click to View Code</summary>
   
   ```python
   # THIS FOLLOWS AFTER DEFINING THE PATH VARIABLES (SEE SCRIPT IN REPOSITORY)
@@ -188,7 +188,7 @@ The YOLOv8s-seg model cannot read through the .json "annotations" file that cont
 <h1 align="center"></h1>
 
 <details>
-  <summary>Click to expand Python code</summary>
+  <summary>🔴 Click to View Code</summary>
 
   ```python
   def convert_coco_to_yolo_segmentation(json_file, folder_name="labels"):
@@ -256,7 +256,7 @@ During the training procedure, the model passes through the large set of train i
 <h1 align="center"></h1>
 
 <details>
-  <summary>Click to expand Python code</summary>
+  <summary>🔴 Click to View Code</summary>
 
   ```python
   from ultralytics import YOLO
