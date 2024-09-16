@@ -287,8 +287,6 @@ During the training procedure, the model passes through the large set of train i
 
 After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link (stores the weights on a temp file and deletes them after the program executes), and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
 
-<h1 align="center"></h1>
-
 <details>
   <summary>Click for Code</summary>
 
@@ -346,11 +344,7 @@ After training my model, I uploaded the weights (model's training knowledge) on 
   ```
 </details>
 
-<h1 align="center"></h1>
-
 The user can set the main variable at the top of the script to the image they wish to analyze (options are: 1 for Cat, 2 for Car, 3 for Plane, 4 for Bicycle).
-
-<h1 align="center"></h1>
 
 <details>
   <summary>Click for Code</summary>
@@ -370,8 +364,6 @@ selected_image_for_processing = 1                         #
   ```
 </details>
 
-<h1 align="center"></h1>
-
 The script automatically loads the appropriate picture using a link to my github (no need to download the picture). The image is read from the URL in a raw byte data form, where the information regarding the image's colors cannot be interpreted by a human or the AI model. I converted each of these raw bytes to an integer using numpy arrays. That way, the information for the colors of each image was represented by a number (0-255 BGR form, converted to RGB) that could be used to display the image, and also to be processed by the AI model. It is important to note that this decoding process resulted in a flattened 1-D array where the Red, Green and Blue values for each pixel were scattered and not colleceted into individual packets of [Red,Green,Blue]. In order to reformat these numbers in a way that would allow me to display and analyze each image using AI, I used CV2.
 
 I provided CV2 with the above decoded integer RGB values representing the image, and it created an outter array of dimensions equal to the image's resolution (for example for a 640x640 pixel image, the corresponding CV2 array would have 640 columns and 640 rows). Each entry in this outter array represented each of the picture's pixels. Each one of these entries (each pixel), was defined as an individual list of 3 elements. Element 1 was the intensity of Red color for that pixel. Element 2 was the intensity of Green color for that pixel, and element 3 was the intensity of Blue color for that pixel. Thus, each entry of the outter 640 x 640 array represented the color for each pixel in the given image. This is a very important detail, as it means that the image was represented by a tensor. 
@@ -388,8 +380,6 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
     <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="250"/></td>
   </tr>
 </table>
-
-<h1 align="center"></h1>
 
 <details>
   <summary>Click for Code</summary>
@@ -459,8 +449,6 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
   ```
 </details>
 
-<h1 align="center"></h1>
-
 After the image's conversion to a tensor, I changed its dimensions to 640x640 again using CV2, so that YOLOv8_seg would be able to analyze it. Usually, AI models are made to analyze lists of vectors (tensors). This is why it is very important that I converted my images to tensors before feeding them into the AI model.
 
 I converted my image tensor into a pytorch tensor. While doing so, I defined the RGB values first, then the number of tensor columns, then the number of tensor's rows (it does not change the RGB number values, but it does change the order they appear in the tensor itself. It rearranges the tensor in a non-inutitive way that is required for the model to read the data). I also defined the RGB values as decimals (float) so that the model would get a more accurate understading of my pictures' colors. I defined the reformatted tensor as a batch of size 1 (also a technical requirement for my model to be able to process the data). Lastly, I divided the tensor by 255 in order to have the range of RGB values describing the image set between 0 and 1 (last technical requirement for the model). 
@@ -468,8 +456,6 @@ I converted my image tensor into a pytorch tensor. While doing so, I defined the
 These are very important parameters that the model needs to have defined correctly, in order to be able to analyze the picture.
 
 The model processes the image and returns a "segmentation mask". A "segmentation mask" is a 2-D array of 0s and 1s. The dimensions of this array are exactly the same as the dimensions of the original image. The 0s and 1s represent if the object is present on that part of the image (1) or not (0). The model determines the location of every pixel that belongs to the object, and places a "1" at the location of every such pixel in a 2-D array having the same height and width as the picture. For further processing, these masks need to be transfered to the CPU, if GPU was used for object detection.
-
-<h1 align="center"></h1>
 
 <details>
   <summary>Click for Code</summary>
@@ -491,16 +477,11 @@ masks = results.masks.data.cpu().numpy()  # Move to CPU and convert to numpy
   ```
 </details>
 
-<h1 align="center"></h1>
-
-
 Since I resized the image to 640x640 before passing it to the model, the resulting dimensions for the object's location array (segmentation mask) are also 640x640. I resized the mask to the original image dimensions using nearest neighbor interpolation. The new pixel's value (0 or 1) is assigned the value of the closest pixel from the original image. It allowed me to scale the mask to the original, larger dimensions by transfering the information regarding object location in an accurate way. The new pixels that fill in the empty space of the larger image, are made to correspond to the closest pixels to that empty space, as defined in the original image (mask). 
 
 I went through all the values in the properly sized segmentation mask, and set all the 1s to 255, which corresponds to white. The segmentation mask was read by CV2, which identified its entries as black (0) and white (255) pixels. In this way I turned the segmentation mask from a numeric object filled with 0s and 1s, to an image that can be displayed. This image showed the exact area of the detected object in white color, overlayed on a dark background. Using CV2, given the sharp contrast between the area occupied by the object, and its background, I ran contour detection for a reasonably accurate approximation outside contours. This contour detection returns a list of (x, y) points that correspond to the outline of the detected object. I created a new empty image, where I drew the contour using the (x, y) points, and filled it in with red color. I then overlayed this image on the original image, with the filled outline having about 30% transparency. This image is returned to the user.
 
 NOTE: As stated previously, the user needs to close this image for the program to continue.
-
-<h1 align="center"></h1>
 
 <details>
   <summary>Click for Code</summary>
@@ -525,8 +506,6 @@ NOTE: As stated previously, the user needs to close this image for the program t
   ```
 </details>
 
-<h1 align="center"></h1>
-
 <table>
   <tr>
     <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20AI%20Highlighted.png" alt="Cat AI Highlighted" style="width: 250px;"></td>
@@ -535,8 +514,6 @@ NOTE: As stated previously, the user needs to close this image for the program t
     <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20AI%20Highlighted.png" alt="Bicycle AI Highlighted" style="width: 250px;"></td>
   </tr>
 </table>
-
-<h1 align="center"></h1>
 
 <details>
   <summary>Click for Code</summary>
@@ -547,9 +524,6 @@ NOTE: As stated previously, the user needs to close this image for the program t
 
   ```
 </details>
-
-
-<h1 align="center"></h1>
 
 <h3 align="center"><b>🔺FOURIER ANALYSIS🔺</b></h3>
 
