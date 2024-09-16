@@ -435,29 +435,12 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
 
 <h1 align="center"></h1>
 
-<h3 align="center"><b>PLANE</b></h3>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Plane Image" width="49%" height="335px" style="object-fit: cover;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Plane Animation Gif" width="49%" height="335px" style="object-fit: cover;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Bicycle Image" width="49%" height="295px" style="object-fit: cover;">
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
 </div>
-
-
-
-
-
-
-
-
-<table>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="250"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="250"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="250"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="250"/></td>
-  </tr>
-</table>
 
 After the image's conversion to a tensor, I changed its dimensions to 640x640 again using CV2, so that YOLOv8_seg would be able to analyze it. Usually, AI models are made to analyze lists of vectors (tensors). This is why it is very important that I converted my images to tensors before feeding them into the AI model.
 
@@ -515,6 +498,26 @@ NOTE: As stated previously, the user needs to close this image for the program t
       translucent_fill = cv2.addWeighted(image, 1, filled_mask, 0.7, 0)  # Adjust alpha and beta for translucency
   ```
 </details>
+
+
+
+
+
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20AI%20Highlighted.png" alt="Plane Image" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20AI%20Highlighted.png" alt="Plane Animation Gif" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20AI%20Highlighted.png" alt="Bicycle Image" width="49%" height="295px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20AI%20Highlighted.png" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
+</div>
+
+
+
+
+
+
+
+
 
 <table>
   <tr>
