@@ -374,6 +374,15 @@ selected_image_for_processing = 1                         #
 
 The script automatically loads the appropriate picture using a link to my github (no need to download the picture), sets all the graph and animation parameters for the specific picture, and presents the selected image to the user.
 
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="200"/></td>
+  </tr>
+</table>
+
 <h1 align="center"></h1>
 
 <details>
@@ -443,18 +452,6 @@ The script automatically loads the appropriate picture using a link to my github
   h1 = selection_result[7] 
   ```
 </details>
-
-<h1 align="center"></h1>
-
-<table>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="200"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="200"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="200"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="200"/></td>
-  </tr>
-</table>
-
 
 <h1 align="center"></h1>
 
