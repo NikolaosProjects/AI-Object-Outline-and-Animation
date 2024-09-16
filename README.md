@@ -467,11 +467,7 @@ I converted my image tensor into a pytorch tensor. While doing so, I defined the
 
 These are very important parameters that the model needs to have defined correctly, in order to be able to analyze the picture.
 
-The model processes the image and returns a "segmentation mask". A "segmentation mask" is a 2-D array of 0s and 1s. The dimensions of this array are exactly the same as the dimensions of the original image. The 0s and 1s represent if the object is present on that part of the image (1) or not (0). The model determines the location of every pixel that belongs to the object, and places a "1" at the location of every such pixel in a 2-D array having the same height and width as the picture. 
-
-Since I resized the image to 640x640 before passing it to the model, the resulting dimensions for the object's location array (segmentation mask) are also 640x640. I resized the mask to the original image dimensions using nearest neighbor interpolation. The new pixel's value (0 or 1) is assigned the value of the closest pixel from the original image. It allowed me to scale the mask to the original, larger dimensions by transfering the information regarding object location in an accurate way. The new pixels that fill in the empty space of the larger image, are made to correspond to the closest pixels to that empty space, as defined in the original mask. 
-
-and the processed image is returned to the user with the detected object highlighted in red color. 
+The model processes the image and returns a "segmentation mask". A "segmentation mask" is a 2-D array of 0s and 1s. The dimensions of this array are exactly the same as the dimensions of the original image. The 0s and 1s represent if the object is present on that part of the image (1) or not (0). The model determines the location of every pixel that belongs to the object, and places a "1" at the location of every such pixel in a 2-D array having the same height and width as the picture. For further processing, these masks need to be transfered to the CPU, if GPU was used for object detection.
 
 <h1 align="center"></h1>
 
@@ -480,14 +476,65 @@ and the processed image is returned to the user with the detected object highlig
 
   ```python
 
+# Resize the image to 640x640, to be compatible with YOLOv8
+input_image = cv2.resize(input_image, (640, 640))
 
+# Convert the image to tensor to be processed by YOLOv8
+input_image = torch.tensor(input_image).permute(2, 0, 1).float().unsqueeze(0).to(device) / 255.0
+
+# Process the image with YOLOv8
+results = model(input_image)[0]
+
+# Extract the segmentation masks
+masks = results.masks.data.cpu().numpy()  # Move to CPU and convert to numpy
 
   ```
 </details>
 
 <h1 align="center"></h1>
 
-PICTURES GO HERE
+
+Since I resized the image to 640x640 before passing it to the model, the resulting dimensions for the object's location array (segmentation mask) are also 640x640. I resized the mask to the original image dimensions using nearest neighbor interpolation. The new pixel's value (0 or 1) is assigned the value of the closest pixel from the original image. It allowed me to scale the mask to the original, larger dimensions by transfering the information regarding object location in an accurate way. The new pixels that fill in the empty space of the larger image, are made to correspond to the closest pixels to that empty space, as defined in the original image (mask). 
+
+I went through all the values in the properly sized segmentation mask, and set all the 1s to 255, which corresponds to white. The segmentation mask was read by CV2, which identified its entries as black (0) and white (255) pixels. In this way I turned the segmentation mask from a numeric object filled with 0s and 1s, to an image that can be displayed. This image showed the exact area of the detected object in white color, overlayed on a dark background. Using CV2, given the sharp contrast between the area occupied by the object, and its background, I ran contour detection for a reasonably accurate approximation outside contours. This contour detection returns a list of (x, y) points that correspond to the outline of the detected object. I created a new empty image, where I drew the contour using the (x, y) points, and filled it in with red color. I then overlayed this image on the original image, with the filled outline having about 30% transparency. This image is returned to the user.
+
+NOTE: As stated previously, the user needs to close this image for the program to continue.
+
+<h1 align="center"></h1>
+
+<details>
+  <summary>Click for Code</summary>
+
+  ```python
+  # Loop through each resized mask and draw filled translucent contours
+  for mask in masks_resized:
+      binary_mask = (mask > 0.5).astype(np.uint8) * 255  # Convert to binary mask
+  
+      # Create an empty image for the mask with the same size as the original image
+      filled_mask = np.zeros_like(image, dtype=np.uint8)
+  
+      # Find contours
+      contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+  
+      # Fill the contours with a translucent color (e.g., red with some transparency)
+      for contour in contours:
+          cv2.drawContours(filled_mask, [contour], -1, (0, 0, 255), thickness=cv2.FILLED)  # Red fill
+      
+      # Blend the filled mask with the original image
+      translucent_fill = cv2.addWeighted(image, 1, filled_mask, 0.7, 0)  # Adjust alpha and beta for translucency
+  ```
+</details>
+
+<h1 align="center"></h1>
+
+<table>
+  <tr>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20AI%20Highlighted.png" alt="Cat AI Highlighted" style="width: 200px;"></td>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20AI%20Highlighted.png" alt="Car AI Highlighted" style="width: 200px;"></td>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20AI%20Highlighted.png" alt="Plane AI Highlighted" style="width: 200px;"></td>
+    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20AI%20Highlighted.png" alt="Bicycle AI Highlighted" style="width: 200px;"></td>
+  </tr>
+</table>
 
 <h1 align="center"></h1>
 
