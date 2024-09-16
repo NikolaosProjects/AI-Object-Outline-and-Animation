@@ -360,15 +360,6 @@ After this important converson, I defined a function which set all the graph and
 
 NOTE: to allow the program to continue, any plot that pops up needs to be closed first. 
 
-<table>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="250"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="250"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="250"/></td>
-    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="250"/></td>
-  </tr>
-</table>
-
 <details>
   <summary>🔹Click for Code</summary>
 
@@ -436,6 +427,15 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
   h1 = selection_result[7] 
   ```
 </details>
+
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="250"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="250"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="250"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="250"/></td>
+  </tr>
+</table>
 
 After the image's conversion to a tensor, I changed its dimensions to 640x640 again using CV2, so that YOLOv8_seg would be able to analyze it. Usually, AI models are made to analyze lists of vectors (tensors). This is why it is very important that I converted my images to tensors before feeding them into the AI model.
 
