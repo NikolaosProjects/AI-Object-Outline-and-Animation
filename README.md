@@ -52,7 +52,7 @@ I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as th
 
 <h1 align="center"></h1>
 <details>
-  <summary> 🔷 Click to View Code </summary>
+  <summary> 🔺 Click to View Code </summary>
   
   ```python
   import json
