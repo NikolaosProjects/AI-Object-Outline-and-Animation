@@ -52,7 +52,7 @@ I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as th
 
 <h1 align="center"></h1>
 <details>
-  <summary> Click to View Code </summary>
+  <summary> Click for Code </summary>
   
   ```python
   import json
@@ -91,7 +91,7 @@ The COCO2017 dataset consists of around 181,000 images. For my training purposes
 <h1 align="center"></h1>
 
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
   
   ```python
   # THIS FOLLOWS AFTER DEFINING THE PATH VARIABLES (SEE SCRIPT IN REPOSITORY)
@@ -188,7 +188,7 @@ The YOLOv8s-seg model cannot read through the .json "annotations" file that cont
 <h1 align="center"></h1>
 
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
   def convert_coco_to_yolo_segmentation(json_file, folder_name="labels"):
@@ -256,7 +256,7 @@ During the training procedure, the model passes through the large set of train i
 <h1 align="center"></h1>
 
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
   from ultralytics import YOLO
@@ -290,7 +290,7 @@ After training my model, I uploaded the weights (model's training knowledge) on 
 <h1 align="center"></h1>
 
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -298,11 +298,15 @@ After training my model, I uploaded the weights (model's training knowledge) on 
 
   ```
 </details>
+
+<h1 align="center"></h1>
 
 The user can set the main variable at the top of the script to the image they wish to analyze (options are: 1 for Cat, 2 for Car, 3 for Plane, 4 for Bicycle).
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -310,11 +314,15 @@ The user can set the main variable at the top of the script to the image they wi
 
   ```
 </details>
+
+<h1 align="center"></h1>
 
 The script automatically loads the appropriate picture using a link to my github (no need to download the picture), sets all the graph and animation parameters for the specific picture, and presents the selected image to the user.
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -322,16 +330,20 @@ The script automatically loads the appropriate picture using a link to my github
 
   ```
 </details>
+
+<h1 align="center"></h1>
 
 SELECTED IMAGES GO HERE
 
 
-
+<h1 align="center"></h1>
 
 The image's dimensions are changed to 640x640. The resized image is then converted into a format of (channel, height, width), its values changed to float for higher accuracy, and then changed to appear as a batch of size 1. After setting these parameters, we turn the image into a tensor, and divide by 255 in order to have the range of RGB values describing the image, set between 0 and 1. These are very important parameters that the model needs in order to be able to analyze the picture.
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -339,19 +351,23 @@ The image's dimensions are changed to 640x640. The resized image is then convert
 
   ```
 </details>
+
+<h1 align="center"></h1>
 
 The model processes the image, and the processed image is returned to the user with the detected object highlighted in red color. 
 
 PICTURES GO HERE
 
-
+<h1 align="center"></h1>
 
 
 At this point, using CV2 (image and color processing module), and the output of the model, the script identifies the coordinates of the object's boundary, and stores these coordinates as a list of complex (imaginary) points in the form of (x + iy).
 
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -359,7 +375,6 @@ At this point, using CV2 (image and color processing module), and the output of 
 
   ```
 </details>
-
 
 
 <h1 align="center"></h1>
@@ -368,8 +383,10 @@ At this point, using CV2 (image and color processing module), and the output of 
 
 At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fourier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the outline's Fourier coefficients (complex vectors (x, iy)) as well as their associated frequencies. It then pairs them correctly, and places them symmetrically around f = 0hz.
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -378,11 +395,14 @@ At this stage, our outline is converted into a discrete set of data in the compl
   ```
 </details>
 
+<h1 align="center"></h1>
 
 The outline of the object in the form of complex points, and the distribution of fourier coefficients' magnitude given their frequency are returned to the user.
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -391,6 +411,7 @@ The outline of the object in the form of complex points, and the distribution of
   ```
 </details>
 
+<h1 align="center"></h1>
 
 FOURIER IMAGES GO HERE
 
@@ -402,8 +423,10 @@ Since the fourier coefficients are vectors in the complex plane, and have a spec
 
 Using the python module Manim, it is relatively easy to achieve this. We use the fourier coefficients' coordinates to define a vector corresponding to each coefficient, and then define its angular velocity (rate of rotation) using omega = 2*pi*f. Manim creates an animation by updating a dt variable, where dt is the amount of time in seconds between frames (60fps means dt = 1/60s). To make the vectors rotate, we need to update their position after time dt. to do that, we make them rotate by an angle theta, defined by their frequency. Mathematically, a vector roating at frequency f, after time duration dt, will roate by an angle: theta = omega*dt => theta = 2*pi*f*dt.
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -412,11 +435,14 @@ Using the python module Manim, it is relatively easy to achieve this. We use the
   ```
 </details>
 
+<h1 align="center"></h1>
 
 After each frame, we update the positions of each vector, by rotating it with its corresponding angle theta. To make the animations go faster, we multiplied the frequency of each vector by 500 (it litearlly makes every signle vector rotate 500 times faster).
 
+<h1 align="center"></h1>
+
 <details>
-  <summary>Click to View Code</summary>
+  <summary>Click for Code</summary>
 
   ```python
 
@@ -425,5 +451,6 @@ After each frame, we update the positions of each vector, by rotating it with it
   ```
 </details>
 
+<h1 align="center"></h1>
 
 MANIM GIFS GO HERE
