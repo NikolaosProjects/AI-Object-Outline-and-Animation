@@ -376,7 +376,7 @@ The script automatically loads the appropriate picture using a link to my github
 
 I provided CV2 with the above decoded integer RGB values representing the image, and it created an outter array of dimensions equal to the image's resolution (for example for a 640x640 pixel image, the corresponding CV2 array would have 640 columns and 640 rows). Each entry in this outter array represented each of the picture's pixels. Each one of these entries (each pixel), was defined as an individual list of 3 elements. Element 1 was the intensity of Red color for that pixel. Element 2 was the intensity of Green color for that pixel, and element 3 was the intensity of Blue color for that pixel. Thus, each entry of the outter 640 x 640 array represented the color for each pixel in the given image. This is a very important detail, as it means that the image was represented by a tensor. 
 
-After this important converson, I defined a function which sets all the graph and animation parameters for the specific picture. The reformated image is then presented to the user.
+After this important converson, I defined a function which set all the graph and animation parameters for the specific picture. The selected and reformated image is presented to the user every time the script is ran.
 
 NOTE: to allow the program to continue, any plot that pops up needs to be closed first. 
 
@@ -461,13 +461,13 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
 
 <h1 align="center"></h1>
 
-After the image's conversion to an array, I changed its dimensions to 640x640 again using CV2.
+After the image's conversion to a tensor, I changed its dimensions to 640x640 again using CV2, so that YOLOv8_seg would be able to analyze it. Usually, AI models are made to analyze lists of vectors (tensors). This is why it is very important that I converted my images to tensors before feeding them into the AI model.
 
-I converted the resized image into a format of (channel, height, width), I changed its values to float for higher accuracy, and then made it appear as a batch of size 1. After setting these parameters, I turned the image into a tensor, which I divided by 255 in order to have the range of RGB values describing the image set between 0 and 1. 
+I converted my image tensor into a pytorch tensor. While doing so, I defined the RGB values first, then the number of tensor columns, then the number of tensor's rows (it does not change the tensor itself, but this is just a requirement for the AI model as it reads the tensor). I also defined the RGB values as decimals (float) so that the model would get a more accurate understading of my pictures' colors. I defined the reformatted tensor as a batch of size 1 (also a technical requirement for my model to be able to process the data). Lastly, I divided the tensor by 255 in order to have the range of RGB values describing the image set between 0 and 1 (last technical requirement for the model). 
 
 These are very important parameters that the model needs to have defined correctly, in order to be able to analyze the picture.
 
-The model processes the image,
+The model processes the image, and returns a list of coordinates which define the detected object's outline. 
 
 Using CV2 and the output of the model, the script identifies the coordinates of the object's boundary, and stores these coordinates as a list of complex (imaginary) points in the form of (x + iy).
 
