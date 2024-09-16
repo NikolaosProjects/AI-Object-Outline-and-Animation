@@ -519,7 +519,9 @@ The last thing I wanted to do with my outline points, was to convert them to com
 
 <h3 align="center"><b>🔺FOURIER ANALYSIS🔺</b></h3>
 
-Since the outline of the object at this stage is nothing but a curve in the 2D complex plane, its shape (like any other curve) can be represented as a superposition of sine and cosine waves. Namely, by their corresponding Fourier Series. This is true for any curve. The arguments and amplitudes of these sine and cosine curves can be determined via Fourier analysis. Numpy offers a module that applies the FFT (Fast Fourier Transform) algorithm to 2D arrays, and extracts the shape's Fourier coefficients and frequencies. The superposition of sine and cosine graphs is but a large sum of these two functions. In the complex plane, addition of sines and cosines can also be represented by complex exponential functions of equvalent frequency. This means that the outline can be approximated via the addition of complex exponential functions of varying amplitudes and frequencies.  
+Since the outline of the object at this stage is nothing but a curve in the 2D complex plane, its shape (like any other curve) can be represented as a superposition of sine and cosine waves. Namely, by their corresponding Fourier Series. This is true for any curve. The arguments and amplitudes of these sine and cosine curves can be determined via Fourier analysis. Numpy offers a module that applies the FFT (Fast Fourier Transform) algorithm to 2D arrays, and extracts the shape's Fourier coefficients and frequencies.
+
+The superposition of sine and cosine graphs is but a large sum of these two functions. In the complex plane, addition of sines and cosines can also be represented by complex exponential functions of magnitudes and frequencies as provided by FFT. Complex exponential functions in turn can be represented by rotating vectors in the complex plane. This means that the outline can be approximated via the tip to tail addition of the vectors, with magnitudes corresponding to the FFT's x and y values (magnitudes), and frequencies corresponding to the FFT's frequencies. 
 
 I applied the FFT algorithm and extracted the outline's fourier coefficients in the form of x, y points, along with their corresponding frequencies. I made sure to center these frequencies and their coefficients in a symmetric manner around f = 0hz.
 
@@ -624,22 +626,11 @@ The outline of the object in the form of complex points, and the distribution of
 
 <h3 align="center"><b>🔺OUTLINE ANIMATION🔺</b></h3>
 
-Since the fourier coefficients are vectors in the complex plane, and have a specific frequency associated with them, we can make them rotate. if we pair them tip to tail, and make each vector rotate about the point of the previous vector, tracing the path of the last vector's tip results in tracing the object's outline, given a sufficiencly large number fourier coefficients (number of rotating vectors), to ensure accuracy.
+As explained earlier, since the Fourier coefficients are vectors in the complex plane, and have a specific frequency associated with them, I can make them rotate. if I pair them tip to tail, and make each vector rotate about the point of the previous vector, tracing the path of the last vector's tip results in tracing the object's outline, given a sufficiencly large number Fourier coefficients (number of rotating vectors), to ensure accuracy.
 
-Using the python module Manim, it is relatively easy to achieve this. We use the fourier coefficients' coordinates to define a vector corresponding to each coefficient, and then define its angular velocity (rate of rotation) using omega = 2*pi*f. Manim creates an animation by updating a dt variable, where dt is the amount of time in seconds between frames (60fps means dt = 1/60s). To make the vectors rotate, we need to update their position after time dt. to do that, we make them rotate by an angle theta, defined by their frequency. Mathematically, a vector roating at frequency f, after time duration dt, will roate by an angle: theta = omega*dt => theta = 2*pi*f*dt.
+Using the python module Manim, it is relatively easy to achieve this. I used the Fourier coefficients' coordinates to define a vector corresponding to each coefficient, and then define its angular velocity (rate of rotation) using $$ omega = 2*pi*f $$. Manim creates an animation by updating a $$dt$$ variable, where $$dt$$ is the amount of time in seconds between frames (60fps means dt = 1/60s). To make the vectors rotate, I needed to update their position after time $$dt$$. To do that, I made them rotate by an angle theta, defined by their frequency, after every time $$dt$$. Mathematically, a vector roating at frequency $$f$$, after time duration $$dt$$, will roate by an angle: $$theta = omega*dt => theta = 2*pi*f*dt$$.
 
-
-<details>
-  <summary>🔹Click for Code</summary>
-
-  ```python
-
-
-
-  ```
-</details>
-
-After each frame, we update the positions of each vector, by rotating it with its corresponding angle theta. To make the animations go faster, we multiplied the frequency of each vector by 500 (it litearlly makes every signle vector rotate 500 times faster).
+After each frame, I updated the position of each vector, by rotating it with its corresponding angle $$theta$$. To make the animations go faster, I multiplied the frequency of each vector by 500 (it makes every signle vector rotate 500 times faster).
 
 <details>
   <summary>🔹Click for Code</summary>
