@@ -50,34 +50,38 @@ For my project I wanted to provide my own training to the model, with the goal o
 
 I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail compared to the stock COCO2017 annotations. This dataset's annotations contains several .json files. I started by merging all the "training" immages' annotations into one .json file, and all the "validation" images' annotations into one .json file.
 
-```python
-import json
-import os
-from glob import glob
-
-def merge_json_files(input_files, output_file):
-    combined_data = {"images": [], "annotations": [], "categories": []}
-    for file_name in input_files:
-        with open(file_name, 'r') as f:
-            data = json.load(f)
-            combined_data['images'].extend(data.get('images', []))
-            combined_data['annotations'].extend(data.get('annotations', []))
-            if not combined_data['categories']:
-                combined_data['categories'] = data.get('categories', [])
-
-    with open(output_file, 'w') as f:
-        json.dump(combined_data, f, indent=4)
-
-
-if __name__ == "__main__":
-    # Merge training JSON files
-    train_files = glob('path to train annotations folder')
-    merge_json_files(train_files, 'instances_train2017.json')
-
-    # Merge validation JSON files
-    val_files = glob('path to val annotations folder')
-    merge_json_files(val_files, 'instances_val2017.json')
+<details>
+  <summary>Click to expand Python code</summary>
+  
+  ```python
+  import json
+  import os
+  from glob import glob
+  
+  def merge_json_files(input_files, output_file):
+      combined_data = {"images": [], "annotations": [], "categories": []}
+      for file_name in input_files:
+          with open(file_name, 'r') as f:
+              data = json.load(f)
+              combined_data['images'].extend(data.get('images', []))
+              combined_data['annotations'].extend(data.get('annotations', []))
+              if not combined_data['categories']:
+                  combined_data['categories'] = data.get('categories', [])
+  
+      with open(output_file, 'w') as f:
+          json.dump(combined_data, f, indent=4)
+  
+  
+  if __name__ == "__main__":
+      # Merge training JSON files
+      train_files = glob('path to train annotations folder')
+      merge_json_files(train_files, 'instances_train2017.json')
+  
+      # Merge validation JSON files
+      val_files = glob('path to val annotations folder')
+      merge_json_files(val_files, 'instances_val2017.json')
 ```
+</details>
 
 The COCO2017 dataset consists of around 181,000 images. For my training purposes, I only wanted the images that contained Cats, Cars, Planes, and Bicycles. I went through the .json "annotations" file, and extracted the image IDs and object details for only the pictures from the COCO dataset that contained the desired objects. I used that information to create new filtered "annotations" files (containing only the image IDs and details for the desired categories), and duplicated the images of interest into a new folder. That is how I created my custom training dataset's images and annotations.
 
