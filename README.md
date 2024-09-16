@@ -499,34 +499,12 @@ NOTE: As stated previously, the user needs to close this image for the program t
   ```
 </details>
 
-
-
-
-
-
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
   <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20AI%20Highlighted.png" alt="Plane Image" width="49%" height="335px" style="object-fit: cover;">
   <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20AI%20Highlighted.png" alt="Plane Animation Gif" width="49%" height="335px" style="object-fit: cover;">
   <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20AI%20Highlighted.png" alt="Bicycle Image" width="49%" height="295px" style="object-fit: cover;">
   <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20AI%20Highlighted.png" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
 </div>
-
-
-
-
-
-
-
-
-
-<table>
-  <tr>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20AI%20Highlighted.png" alt="Cat AI Highlighted" style="width: 250px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20AI%20Highlighted.png" alt="Car AI Highlighted" style="width: 250px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20AI%20Highlighted.png" alt="Plane AI Highlighted" style="width: 250px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20AI%20Highlighted.png" alt="Bicycle AI Highlighted" style="width: 250px;"></td>
-  </tr>
-</table>
 
 The last thing I wanted to do with my outline points, was to convert them to complex (imaginary) numbers. That would allow me to perform Fourier Analysis on the outlines and be able to extract their fourier coefficients and frequencies. After de-nesting the original contour array, I converted each contour point to an imaginary point, and added it to a new array which would be used for fourier analysis
 
@@ -627,6 +605,22 @@ The outline of the object in the form of complex points, and the distribution of
   plt.show()
   ```
 </details>
+
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Complex%20Plane.png" alt="Plane Image" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Fourier%20Coefficients.png" alt="Plane Animation Gif" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20Complex%20Plane.png" alt="Bicycle Image" width="49%" height="295px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20Fourier%20Coefficients.png" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
+</div>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Complex%20Plane.png"  alt="Plane Image" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Fourier%20Coefficients.png" alt="Plane Animation Gif" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Complex%20Plane.png" alt="Bicycle Image" width="49%" height="295px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Fourier%20Coefficients.png" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
+</div>
+
 
 
 <table>
