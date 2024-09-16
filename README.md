@@ -38,13 +38,13 @@ For this project, I trained an image segmentation model to accurately identify a
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>🔺 ARTIFICIAL INTELLIGENCE MODEL</b></h3>
+<h3 align="center"><b>🔺 ARTIFICIAL INTELLIGENCE MODEL🔺</b></h3>
 
 I used the untrained YOLOv8s-seg model from Ultralytics (https://docs.ultralytics.com/tasks/segment), which is an Artificial Intelligence image detection and segmentation model. When provided with an image, it can identify objects from up to 80 different categories. Additionally, it can detect the location of these objects in the image, and identify their exact borders.
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>🔺 MODEL TRAINING </b></h3>
+<h3 align="center"><b>🔺 MODEL TRAINING🔺</b></h3>
 
 For my project I wanted to provide my own training to the model, with the goal of identifying Cats, Cars, Planes and Bicycles. I used Train and Validation images from the COCO2017 dataset (https://cocodataset.org/#download). Each of these images' name is a unique ID and the dataset is accompanied by "annotations". These are .json files which link each image's unique ID with a list of all the objects in that image, as well as the outlines of these objects as sets of (x, y) points (coordinates). One "annotations" file can contain the IDs and properties of thousands of images. 
 
@@ -283,7 +283,7 @@ During the training procedure, the model passes through the large set of train i
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>🔺USING THE TRAINED YOLOv8s-seg MODEL</b></h3>
+<h3 align="center"><b>🔺USING THE TRAINED YOLOv8s-seg MODEL🔺</b></h3>
 
 After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link (stores the weights on a temp file and deletes them after the program executes), and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
 
@@ -504,7 +504,7 @@ PICTURES GO HERE
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>🔺FOURIER ANALYSIS</b></h3>
+<h3 align="center"><b>🔺FOURIER ANALYSIS🔺</b></h3>
 
 At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fourier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the outline's Fourier coefficients (complex vectors (x, iy)) as well as their associated frequencies. It then pairs them correctly, and places them symmetrically around f = 0hz.
 
@@ -542,7 +542,7 @@ FOURIER IMAGES GO HERE
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>🔺OUTLINE ANIMATION</b></h3>
+<h3 align="center"><b>🔺OUTLINE ANIMATION🔺</b></h3>
 
 Since the fourier coefficients are vectors in the complex plane, and have a specific frequency associated with them, we can make them rotate. if we pair them tip to tail, and make each vector rotate about the point of the previous vector, tracing the path of the last vector's tip results in tracing the object's outline, given a sufficiencly large number fourier coefficients (number of rotating vectors), to ensure accuracy.
 
