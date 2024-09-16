@@ -38,7 +38,7 @@ For this project, I trained an image segmentation model to accurately identify a
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>🔴 ARTIFICIAL INTELLIGENCE MODEL 🔴</b></h3>
+<h3 align="left"><b>🔴 ARTIFICIAL INTELLIGENCE MODEL</b></h3>
 
 I used the untrained YOLOv8s-seg model from Ultralytics (https://docs.ultralytics.com/tasks/segment), which is an Artificial Intelligence image detection and segmentation model. When provided with an image, it can identify objects from up to 80 different categories. Additionally, it can detect the location of these objects in the image, and identify their exact borders.
 
