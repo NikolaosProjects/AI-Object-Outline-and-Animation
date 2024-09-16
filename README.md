@@ -50,6 +50,7 @@ For my project I wanted to provide my own training to the model, with the goal o
 
 I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail compared to the stock COCO2017 annotations. This dataset's annotations contains several .json files. I started by merging all the "training" immages' annotations into one .json file, and all the "validation" images' annotations into one .json file.
 
+<h1 align="center"></h1>
 <details>
   <summary>Click to expand Python code</summary>
   
@@ -83,96 +84,107 @@ I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as th
 ```
 </details>
 
+<h1 align="center"></h1>
+
 The COCO2017 dataset consists of around 181,000 images. For my training purposes, I only wanted the images that contained Cats, Cars, Planes, and Bicycles. I went through the .json "annotations" file, and extracted the image IDs and object details for only the pictures from the COCO dataset that contained the desired objects. I used that information to create new filtered "annotations" files (containing only the image IDs and details for the desired categories), and duplicated the images of interest into a new folder. That is how I created my custom training dataset's images and annotations.
 
-```python
-# THIS FOLLOWS AFTER DEFINING THE PATH VARIABLES (SEE SCRIPT IN REPOSITORY)
-# Helper function to filter annotations and images
-def filter_coco_data(annotations_path, images_dir, filtered_annotations_path, filtered_images_dir, desired_category_names):
-    # Load COCO annotations
-    with open(annotations_path, 'r') as f:
-        data = json.load(f)
-    # Get the list of desired category IDs
-    desired_category_ids = [cat['id'] for cat in data['categories'] if cat['name'] in desired_category_names]
-    # Filter annotations
-    filtered_annotations = {
-        'images': [],
-        'annotations': [],
-        'categories': [cat for cat in data['categories'] if cat['name'] in desired_category_names]
-    }
-    filtered_image_ids = set()
-    for ann in data['annotations']:
-        if ann['category_id'] in desired_category_ids:
-            filtered_annotations['annotations'].append(ann)
-            filtered_image_ids.add(ann['image_id'])
-    for img in data['images']:
-        if img['id'] in filtered_image_ids:
-            filtered_annotations['images'].append(img)
-    # Save filtered annotations
-    with open(filtered_annotations_path, 'w') as f:
-        json.dump(filtered_annotations, f)
-    # Copy filtered images
-    for img in filtered_annotations['images']:
-        src_img_path = os.path.join(images_dir, img['file_name'])
-        dest_img_path = os.path.join(filtered_images_dir, img['file_name'])
-        if os.path.exists(src_img_path):
-            shutil.copy(src_img_path, dest_img_path)
-        else:
-            print(f"Warning: {src_img_path} does not exist and will not be copied.")
-# Apply the filter for train and validation datasets
-filter_coco_data(
-    coco_train_annotations_path,
-    coco_train_images_dir,
-    filtered_train_annotations_path,
-    filtered_train_images_dir,
-    desired_categories
-)
-filter_coco_data(
-    coco_val_annotations_path,
-    coco_val_images_dir,
-    filtered_val_annotations_path,
-    filtered_val_images_dir,
-    desired_categories
-)
-# Mapping of original category IDs to new category IDs
-category_mappings = {
-    17: 0,  # cat
-    3: 1,   # car
-    5: 2,   # airplane
-    2: 3    # bicycle
-}
-def update_category_ids(json_path, category_mappings):
-    # Load COCO annotations
-    with open(json_path, 'r') as f:
-        data = json.load(f)
-    # Print existing category IDs for debugging
-    existing_ids = set(ann['category_id'] for ann in data['annotations'])
-    print(f"Existing category IDs: {existing_ids}")
-    print(f"Category mappings: {category_mappings}")
-    # Update category IDs in annotations
-    for annotation in data['annotations']:
-        old_id = annotation['category_id']
-        if old_id in category_mappings:
-            annotation['category_id'] = category_mappings[old_id]
-        else:
-            print(f"Warning: Category ID {old_id} not found in category_mappings.")
-    # Update category IDs in categories
-    for category in data['categories']:
-        old_id = category['id']
-        if old_id in category_mappings:
-            category['id'] = category_mappings[old_id]
-        else:
-            print(f"Warning: Category ID {old_id} not found in category_mappings.")
-    # Save updated annotations
-    with open(json_path, 'w') as f:
-        json.dump(data, f, indent=4)
-    print(f"Updated annotations saved to {json_path}")
-# Apply the updates
-update_category_ids(filtered_train_annotations_path, category_mappings)
-update_category_ids(filtered_val_annotations_path, category_mappings)
-```
+<h1 align="center"></h1>
+
+<details>
+  <summary>Click to expand Python code</summary>
+  ```python
+  # THIS FOLLOWS AFTER DEFINING THE PATH VARIABLES (SEE SCRIPT IN REPOSITORY)
+  # Helper function to filter annotations and images
+  def filter_coco_data(annotations_path, images_dir, filtered_annotations_path, filtered_images_dir, desired_category_names):
+      # Load COCO annotations
+      with open(annotations_path, 'r') as f:
+          data = json.load(f)
+      # Get the list of desired category IDs
+      desired_category_ids = [cat['id'] for cat in data['categories'] if cat['name'] in desired_category_names]
+      # Filter annotations
+      filtered_annotations = {
+          'images': [],
+          'annotations': [],
+          'categories': [cat for cat in data['categories'] if cat['name'] in desired_category_names]
+      }
+      filtered_image_ids = set()
+      for ann in data['annotations']:
+          if ann['category_id'] in desired_category_ids:
+              filtered_annotations['annotations'].append(ann)
+              filtered_image_ids.add(ann['image_id'])
+      for img in data['images']:
+          if img['id'] in filtered_image_ids:
+              filtered_annotations['images'].append(img)
+      # Save filtered annotations
+      with open(filtered_annotations_path, 'w') as f:
+          json.dump(filtered_annotations, f)
+      # Copy filtered images
+      for img in filtered_annotations['images']:
+          src_img_path = os.path.join(images_dir, img['file_name'])
+          dest_img_path = os.path.join(filtered_images_dir, img['file_name'])
+          if os.path.exists(src_img_path):
+              shutil.copy(src_img_path, dest_img_path)
+          else:
+              print(f"Warning: {src_img_path} does not exist and will not be copied.")
+  # Apply the filter for train and validation datasets
+  filter_coco_data(
+      coco_train_annotations_path,
+      coco_train_images_dir,
+      filtered_train_annotations_path,
+      filtered_train_images_dir,
+      desired_categories
+  )
+  filter_coco_data(
+      coco_val_annotations_path,
+      coco_val_images_dir,
+      filtered_val_annotations_path,
+      filtered_val_images_dir,
+      desired_categories
+  )
+  # Mapping of original category IDs to new category IDs
+  category_mappings = {
+      17: 0,  # cat
+      3: 1,   # car
+      5: 2,   # airplane
+      2: 3    # bicycle
+  }
+  def update_category_ids(json_path, category_mappings):
+      # Load COCO annotations
+      with open(json_path, 'r') as f:
+          data = json.load(f)
+      # Print existing category IDs for debugging
+      existing_ids = set(ann['category_id'] for ann in data['annotations'])
+      print(f"Existing category IDs: {existing_ids}")
+      print(f"Category mappings: {category_mappings}")
+      # Update category IDs in annotations
+      for annotation in data['annotations']:
+          old_id = annotation['category_id']
+          if old_id in category_mappings:
+              annotation['category_id'] = category_mappings[old_id]
+          else:
+              print(f"Warning: Category ID {old_id} not found in category_mappings.")
+      # Update category IDs in categories
+      for category in data['categories']:
+          old_id = category['id']
+          if old_id in category_mappings:
+              category['id'] = category_mappings[old_id]
+          else:
+              print(f"Warning: Category ID {old_id} not found in category_mappings.")
+      # Save updated annotations
+      with open(json_path, 'w') as f:
+          json.dump(data, f, indent=4)
+      print(f"Updated annotations saved to {json_path}")
+  # Apply the updates
+  update_category_ids(filtered_train_annotations_path, category_mappings)
+  update_category_ids(filtered_val_annotations_path, category_mappings)
+  ```
+</details>
+
+<h1 align="center"></h1>
 
 The YOLOv8s-seg model cannot read through the .json "annotations" file that contains all the image IDs and their attributes. It needs a unique .txt text file for each image, that is named exactly the same as the image ID, and contains the details of all objects contained in that specific image. Using a script by z00bean (https://github.com/z00bean/coco2yolo-seg), i went through my filtered dataset "annotations" and created a text file for each of my filtered images, with each of the text files containing all the attributes of its contained objects. This is z00bean's script:
+
+<h1 align="center"></h1>
 
 ```python
 def convert_coco_to_yolo_segmentation(json_file, folder_name="labels"):
@@ -232,8 +244,10 @@ convert_coco_to_yolo_segmentation(filtered_train_annotations_path, YOLO_train_an
 #change val annotaions to yolo format
 convert_coco_to_yolo_segmentation(filtered_val_annotations_path, YOLO_val_annotations)
 ```
-
+<h1 align="center"></h1>
 During the training procedure, the model passes through the large set of train images, examining each picture and its corresponding .txt file. After a full pass, its performance is evaluated by comparing its own inference on objects of the validation images, with the exact attributes of these objects as defines in the .txt annotation files. This cycle constitutes one "epoch". I trained my model on 100 epochs.
+
+<h1 align="center"></h1>
 
 ```python
 from ultralytics import YOLO
