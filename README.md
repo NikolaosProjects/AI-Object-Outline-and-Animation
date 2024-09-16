@@ -50,7 +50,7 @@ For my project I wanted to provide my own training to the model, with the goal o
 
 I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail compared to the stock COCO2017 annotations. This dataset's annotations contains several .json files. I started by merging all the "training" immages' annotations into one .json file, and all the "validation" images' annotations into one .json file.
 
-```
+```python
 import json
 import os
 from glob import glob
