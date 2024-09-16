@@ -285,7 +285,7 @@ During the training procedure, the model passes through the large set of train i
 
 <h3 align="left"><b>🔺USING THE TRAINED YOLOv8s-seg MODEL</b></h3>
 
-After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link, and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
+After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link (stores the weights on a temp file and deletes them after the program executes), and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
 
 <h1 align="center"></h1>
 
@@ -294,8 +294,55 @@ After training my model, I uploaded the weights (model's training knowledge) on 
 
   ```python
 
-
-
+  import cv2
+  import numpy as np
+  import torch
+  import matplotlib.pyplot as plt
+  from ultralytics import YOLO
+  from matplotlib.ticker import FormatStrFormatter
+  from manim import *
+  import requests
+  import tempfile
+  import os
+  from io import BytesIO
+  
+  # URL of the YOLOv8 model
+  model_url = "https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/AI%20Model/best.pt"
+  
+  # Function to download the model file from a URL and return its path
+  def download_model_to_tempfile(url):
+      response = requests.get(url)
+      response.raise_for_status()  # Check for HTTP errors
+      
+      with tempfile.NamedTemporaryFile(delete=False, suffix='.pt') as temp_file:
+          temp_file.write(response.content)
+          temp_file.flush()  # Ensure all data is written to disk
+          temp_file_path = temp_file.name
+          print(f"Image Segmentation Model Downloaded Location: {os.path.dirname(temp_file_path)}")  # Print the directory of the temp file
+          return temp_file_path
+  
+  # Set Device to GPU or CPU, according to system specs
+  if torch.cuda.is_available() == True:
+      device = torch.device("cuda")
+      print("")
+      print(torch.cuda.get_device_name(device))
+      print("")
+  else:
+      device = torch.device("cpu")
+      print("")
+      print("Using CPU")
+      print("")
+  
+  # Download the model file to a temporary file
+  temp_model_path = download_model_to_tempfile(model_url)
+  
+  # Load YOLOv8 model from the temporary file
+  #model = YOLO(temp_model_path)  # Explicitly define the task
+  model = YOLO(temp_model_path)
+  model.to(device)
+  
+  # Clean up: Delete the temporary file
+  os.remove(temp_model_path)
   ```
 </details>
 
@@ -310,8 +357,16 @@ The user can set the main variable at the top of the script to the image they wi
 
   ```python
 
-
-
+##### DEFINE THIS VARIABLE BEFORE STARTING THE PROGRAM ####
+#                                                         #
+selected_image_for_processing = 1                         #
+#                                                         #
+#                       # 1 = CAT                         #
+#                       # 2 = CAR                         #
+#                       # 3 = PLANE                       #
+#                       # 4 = BICYCLE                     #
+#                                                         #
+###########################################################
   ```
 </details>
 
@@ -325,15 +380,80 @@ The script automatically loads the appropriate picture using a link to my github
   <summary>Click for Code</summary>
 
   ```python
-
-
-
+  def selection(choice):
+      if choice == 1:
+          print("")
+          print("Cat Selected")
+          print("")
+          url = "https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg"
+          zoomval = 800000
+          threshold = 600
+          anim_dur = 2.95
+          l = 700
+          h = 700
+          l1 = 0.8*1.5*l
+          h1 = 0.8*h
+      elif choice == 2:
+          print("")
+          print("Car Selected")
+          print("")
+          url = "https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg"
+          zoomval = 800000
+          threshold = 1500
+          anim_dur = 3.52
+          l = 700
+          h = 700    
+          l1 = l
+          h1 = h    
+      elif choice == 3:
+          print("")
+          print("Plane Selected")
+          print("")
+          url = "https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg"
+          zoomval = 400000
+          threshold = 200
+          anim_dur = 2.87
+          l = 550
+          h = 550
+          l1 = l
+          h1 = h
+      elif choice == 4:
+          print("")
+          print("Bicycle Selected")
+          print("")
+          url = "https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg"
+          zoomval = 800000
+          threshold = 1000
+          anim_dur = 5.15
+          l = 450
+          h = 450
+          l1 = 0.85*1.25*l
+          h1 = 0.85*h
+      return(url, zoomval, threshold, anim_dur, l, h, l1, h1)
+  
+  selection_result = selection(selected_image_for_processing)
+  
+  url = selection_result[0]
+  zoomval = selection_result[1]
+  threshold = selection_result[2]
+  anim_dur = selection_result[3]
+  l = selection_result[4]
+  h = selection_result[5]
+  l1 = selection_result[6]
+  h1 = selection_result[7] 
   ```
 </details>
 
 <h1 align="center"></h1>
 
-SELECTED IMAGES GO HERE
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/cat.jpg" alt="Cat" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/car.jpg" alt="Car" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/plane.jpg" alt="Plane" width="200"/></td>
+    <td><img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle" width="200"/></td>
+  </tr>
+</table>
 
 
 <h1 align="center"></h1>
