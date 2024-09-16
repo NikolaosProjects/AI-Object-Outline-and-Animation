@@ -283,19 +283,84 @@ During the training procedure, the model passes through the large set of train i
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>🔺USING THE TRAINED YOLOv8s-seg</b></h3>
+<h3 align="left"><b>🔺USING THE TRAINED YOLOv8s-seg MODEL</b></h3>
 
 After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link, and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
 
+<h1 align="center"></h1>
+
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
+
 The user can set the main variable at the top of the script to the image they wish to analyze (options are: 1 for Cat, 2 for Car, 3 for Plane, 4 for Bicycle).
+
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
 
 The script automatically loads the appropriate picture using a link to my github (no need to download the picture), sets all the graph and animation parameters for the specific picture, and presents the selected image to the user.
 
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
+
+SELECTED IMAGES GO HERE
+
+
+
+
 The image's dimensions are changed to 640x640. The resized image is then converted into a format of (channel, height, width), its values changed to float for higher accuracy, and then changed to appear as a batch of size 1. After setting these parameters, we turn the image into a tensor, and divide by 255 in order to have the range of RGB values describing the image, set between 0 and 1. These are very important parameters that the model needs in order to be able to analyze the picture.
+
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
 
 The model processes the image, and the processed image is returned to the user with the detected object highlighted in red color. 
 
+PICTURES GO HERE
+
+
+
+
 At this point, using CV2 (image and color processing module), and the output of the model, the script identifies the coordinates of the object's boundary, and stores these coordinates as a list of complex (imaginary) points in the form of (x + iy).
+
+
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
+
+
 
 <h1 align="center"></h1>
 
@@ -303,7 +368,31 @@ At this point, using CV2 (image and color processing module), and the output of 
 
 At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fourier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the outline's Fourier coefficients (complex vectors (x, iy)) as well as their associated frequencies. It then pairs them correctly, and places them symmetrically around f = 0hz.
 
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
+
+
 The outline of the object in the form of complex points, and the distribution of fourier coefficients' magnitude given their frequency are returned to the user.
+
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
+
+
+FOURIER IMAGES GO HERE
 
 <h1 align="center"></h1>
 
@@ -313,4 +402,28 @@ Since the fourier coefficients are vectors in the complex plane, and have a spec
 
 Using the python module Manim, it is relatively easy to achieve this. We use the fourier coefficients' coordinates to define a vector corresponding to each coefficient, and then define its angular velocity (rate of rotation) using omega = 2*pi*f. Manim creates an animation by updating a dt variable, where dt is the amount of time in seconds between frames (60fps means dt = 1/60s). To make the vectors rotate, we need to update their position after time dt. to do that, we make them rotate by an angle theta, defined by their frequency. Mathematically, a vector roating at frequency f, after time duration dt, will roate by an angle: theta = omega*dt => theta = 2*pi*f*dt.
 
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
+
+
 After each frame, we update the positions of each vector, by rotating it with its corresponding angle theta. To make the animations go faster, we multiplied the frequency of each vector by 500 (it litearlly makes every signle vector rotate 500 times faster).
+
+<details>
+  <summary>Click to View Code</summary>
+
+  ```python
+
+
+
+  ```
+</details>
+
+
+MANIM GIFS GO HERE
