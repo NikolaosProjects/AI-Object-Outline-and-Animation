@@ -283,7 +283,7 @@ During the training procedure, the model passes through the large set of train i
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>Using the Trained YOLOv8s-seg</b></h3>
+<h3 align="left"><b>🔺USING THE TRAINED YOLOv8s-seg</b></h3>
 
 After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link, and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
 
@@ -299,7 +299,7 @@ At this point, using CV2 (image and color processing module), and the output of 
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>Fourier Analysis</b></h3>
+<h3 align="left"><b>🔺FOURIER ANALYSIS</b></h3>
 
 At this stage, our outline is converted into a discrete set of data in the complex plane, that can be analyzed using Fourier Series. using FFT (Fast Fourier Transform) algorithm, the script extracts the outline's Fourier coefficients (complex vectors (x, iy)) as well as their associated frequencies. It then pairs them correctly, and places them symmetrically around f = 0hz.
 
@@ -307,7 +307,7 @@ The outline of the object in the form of complex points, and the distribution of
 
 <h1 align="center"></h1>
 
-<h3 align="left"><b>Outline Animation</b></h3>
+<h3 align="left"><b>🔺OUTLINE ANIMATION</b></h3>
 
 Since the fourier coefficients are vectors in the complex plane, and have a specific frequency associated with them, we can make them rotate. if we pair them tip to tail, and make each vector rotate about the point of the previous vector, tracing the path of the last vector's tip results in tracing the object's outline, given a sufficiencly large number fourier coefficients (number of rotating vectors), to ensure accuracy.
 
