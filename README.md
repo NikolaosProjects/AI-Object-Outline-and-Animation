@@ -621,29 +621,6 @@ The outline of the object in the form of complex points, and the distribution of
   <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Fourier%20Coefficients.png" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
 </div>
 
-
-
-<table>
-  <tr>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Complex%20Plane.png" alt="Cat Complex Plane" style="width: 250px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20Complex%20Plane.png" alt="Car Complex Plane" style="width: 250px;"></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Complex%20Plane.png" alt="Plane Complex Plane" style="width: 250px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Complex%20Plane.png" alt="Bicycle Complex Plane" style="width: 250px;"></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Fourier%20Coefficients.png" alt="Cat Fourier Coefficients" style="width: 250px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20Fourier%20Coefficients.png" alt="Car Fourier Coefficients" style="width: 250px;"></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Fourier%20Coefficients.png" alt="Plane Fourier Coefficients" style="width: 250px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Fourier%20Coefficients.png" alt="Bicycle Fourier Coefficients" style="width: 250px;"></td>
-  </tr>
-</table>
-
-
-
 <h3 align="center"><b>🔺OUTLINE ANIMATION🔺</b></h3>
 
 As explained earlier, since the Fourier coefficients are vectors in the complex plane, and have a specific frequency associated with them, I can make them rotate. if I pair them tip to tail, and make each vector rotate about the point of the previous vector, tracing the path of the last vector's tip results in tracing the object's outline, given a sufficiencly large number Fourier coefficients (number of rotating vectors), to ensure accuracy.
@@ -736,12 +713,14 @@ After each frame, I updated the position of each vector, by rotating it with its
   ```
 </details>
 
-<table>
-  <tr>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Outline%20Animation.gif" alt="Cat Outline Animation" style="width: 200px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20Outline%20Animation.gif" alt="Car Outline Animation" style="width: 200px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Outline%20Animation.gif" alt="Plane Outline Animation" style="width: 200px;"></td>
-    <td><img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Outline%20Animation.gif" alt="Bicycle Outline Animation" style="width: 200px;"></td>
-  </tr>
-</table>
 
+
+
+
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/1.%20Cat/Cat%20Outline%20Animation.gif" alt="Plane Image" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/2.%20Car/Car%20Outline%20Animation.gif" alt="Plane Animation Gif" width="49%" height="335px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/3.%20Plane/Plane%20Outline%20Animation.gif" alt="Bicycle Image" width="49%" height="295px" style="object-fit: cover;">
+  <img src="https://github.com/NikolaosProjects/AI-Object-Outline-and-Animation/blob/main/All%20Project%20Files/Results/4.%20Bicycle/Bicycle%20Outline%20Animation.gif" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
+</div>
