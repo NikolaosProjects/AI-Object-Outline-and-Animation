@@ -442,7 +442,7 @@ After this important converson, I defined a function which set all the graph and
   <img src="https://raw.githubusercontent.com/NikolaosProjects/AI-Object-Outline-and-Animation/main/All%20Project%20Files/Images%20(Input)/bicycle.jpg" alt="Bicycle Animation Gif" width="49%" height="295px" style="object-fit: cover;">
 </div>
 
-After the image's conversion to a tensor, I changed its dimensions to 640x640 again using CV2, so that YOLOv8_seg would be able to analyze it. Usually, AI models are made to analyze lists of vectors (tensors). This is why it is very important that I converted my images to tensors before feeding them into the AI model.
+After the image's conversion to a tensor, I changed its dimensions to 640x640 using CV2, so that YOLOv8s-seg would be able to analyze it. Usually, AI models are made to analyze lists of vectors (tensors). This is why it is very important that I converted my images to tensors before feeding them into the AI model.
 
 I converted my image tensor into a pytorch tensor. While doing so, I defined the RGB values first, then the number of tensor columns, then the number of tensor's rows. This does not change the RGB number values, but it does change the order they appear in the tensor itself. It rearranges the tensor in a non-inutitive way that is required for the model to read the data. I also defined the RGB values as decimals (float) so that the model would get a more accurate understading of my pictures' colors. I defined the reformatted tensor as a batch of size 1 (also a technical requirement for my model to be able to process the data). Lastly, I divided the tensor by 255 in order to have the range of RGB values describing the image set between 0 and 1 (last technical requirement for the model). 
 
