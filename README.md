@@ -34,21 +34,23 @@
 
 <h1 align="center"><b>PROJECT DESCRIPTION</b></h1>
 
-For this project, I trained an image segmentation model to accurately identify and trace the outlines of Cats, Cars, Planes, and Bicycles. I converted these borders into points in the complex plane, and analyzed them using Fourier Analysis. I used the fourier coefficients and their frequencies as rotating vectors, and used their rotation to trace the outline they originated from.
+For this project, I trained an AI image segmentation model to accurately spot and trace the outlines of Cats, Cars, Planes, and Bicycles. I converted these outlines into points in the complex plane, and analyzed them using Fourier Analysis. I converted the fourier coefficients and their frequencies into vectors, and animated the drawing of the outlines using the rotation of these vectors.
 
 <h1 align="center"></h1>
 
 <h3 align="center"><b>🔺 ARTIFICIAL INTELLIGENCE MODEL🔺</b></h3>
 
-I used the untrained YOLOv8s-seg model from Ultralytics (https://docs.ultralytics.com/tasks/segment), which is an Artificial Intelligence image detection and segmentation model. When provided with an image, it can identify objects from up to 80 different categories. Additionally, it can detect the location of these objects in the image, and identify their exact borders.
+I used the untrained YOLOv8s-seg model from Ultralytics (https://docs.ultralytics.com/tasks/segment), which is an Artificial Intelligence image detection and segmentation model. When provided with an image, it can identify objects from up to 80 different categories. It can also detect the location of these objects in the image and identify their exact borders.
 
 <h1 align="center"></h1>
 
 <h3 align="center"><b>🔺 MODEL TRAINING🔺</b></h3>
 
-For my project I wanted to provide my own training to the model, with the goal of identifying Cats, Cars, Planes and Bicycles. I used Train and Validation images from the COCO2017 dataset (https://cocodataset.org/#download). Each of these images' name is a unique ID and the dataset is accompanied by "annotations". These are .json files which link each image's unique ID with a list of all the objects in that image, as well as the outlines of these objects as sets of (x, y) points (coordinates). One "annotations" file can contain the IDs and properties of thousands of images. 
+I wanted to provide my own training to the model so that when given an image, it would reliably return a clear outline of any Cats, Cars, Planes and Bicycles, if any of these objects were present in the image. The model learns how to accomplish that by making use of training and validation images. I used the training and validation images from the COCO2017 dataset (https://cocodataset.org/#download). Each of these images' name is a unique ID. The images are accompanied by "annotations". Annotations are .json files which link each image (through its unique ID) to a list of all the objects in that image, as well as the outlines of these objects as sets of (x, y) points (coordinates). One "annotations" file can contain the IDs and properties of thousands of images. The model uses the "training" images and their annotations to learn how to correctly locate the outlines of specific objects. Next, it does its best to record the outlines of objects in the validation images, and then compares its output to the exact outlines as listed in the validation images' annotations. It records the deviation from what it got, and what it should have got, and tries to minimize the difference by becoming better in the next training cycle.
 
-I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail compared to the stock COCO2017 annotations. This dataset's annotations contains several .json files. I started by merging all the "training" immages' annotations into one .json file, and all the "validation" images' annotations into one .json file.
+I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as they provide object outlines with higher detail and resolution compared to the stock COCO2017 annotations. The annotations for this dataset are split into several .json files.
+
+The first step in my coding was to merge all the "training" immages' annotations into one .json file, and all the "validation" images' annotations into another .json file.
 
 <details>
   <summary>🔹 Click for Code </summary>
@@ -83,7 +85,7 @@ I used the SAMA-COCO annotations (https://www.sama.com/sama-coco-dataset), as th
 ```
 </details>
 
-The COCO2017 dataset consists of around 181,000 images. For my training purposes, I only wanted the images that contained Cats, Cars, Planes, and Bicycles. I went through the .json "annotations" file, and extracted the image IDs and object details for only the pictures from the COCO dataset that contained the desired objects. I used that information to create new filtered "annotations" files (containing only the image IDs and details for the desired categories), and duplicated the images of interest into a new folder. That is how I created my custom training dataset's images and annotations.
+The COCO2017 dataset consists of around 181,000 images. For my training purposes, I only wanted the images that contained Cats, Cars, Planes, and Bicycles. I thus had to use the complete COCO2017 dataset to create a custom, filtered dataset (both annotations and images) to suit my needs. I went through the original annotations file, extracted the IDs and information of the images which contained the relevant objects, and then copied this information into a new annotations file. Lastly, I copied their associated images into a new folder.
 
 <details>
   <summary>🔹Click for Code</summary>
@@ -176,7 +178,7 @@ The COCO2017 dataset consists of around 181,000 images. For my training purposes
   ```
 </details>
 
-The YOLOv8s-seg model cannot read through the .json "annotations" file that contains all the image IDs and their attributes. It needs a unique .txt text file for each image, that is named exactly the same as the image ID, and contains the details of all objects contained in that specific image. Using a script by z00bean (https://github.com/z00bean/coco2yolo-seg), i went through my filtered dataset "annotations" and created a text file for each of my filtered images, with each of the text files containing all the attributes of its contained objects. This is z00bean's script:
+The YOLOv8s-seg model cannot read through .json files. As a result, it cannot read the filtered annotations I created. The model needs a unique .txt file for each image that is named exactly the same as the image ID, and contains the details of all objects contained in that specific image. Using a script by z00bean (https://github.com/z00bean/coco2yolo-seg), i went through my filtered annotations and split the .json file into individual .txt files. I created one .txt file for every unique ID in the annotations. This is z00bean's script:
 
 <details>
   <summary>🔹Click for Code</summary>
@@ -241,7 +243,7 @@ The YOLOv8s-seg model cannot read through the .json "annotations" file that cont
   ```
 </details>
 
-During the training procedure, the model passes through the large set of train images, examining each picture and its corresponding .txt file. After a full pass, its performance is evaluated by comparing its own inference on objects of the validation images, with the exact attributes of these objects as defines in the .txt annotation files. This cycle constitutes one "epoch". I trained my model on 100 epochs.
+As stated earlier, during the training procedure the model passes through the large set of train images, examining each picture and its corresponding .txt file. After a full pass its performance is evaluated by comparing its own inference on objects of the validation images, with the exact attributes of these objects as defined in the training annotations. This cycle constitutes one "epoch". I trained my model on 100 epochs.
 
 <details>
   <summary>🔹Click for Code</summary>
@@ -273,7 +275,7 @@ During the training procedure, the model passes through the large set of train i
 
 <h3 align="center"><b>🔺USING THE TRAINED YOLOv8s-seg MODEL🔺</b></h3>
 
-After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link (stores the weights on a temp file and deletes them after the program executes), and to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
+After training my model, I uploaded the weights (model's training knowledge) on my gihub so it can be easily accessible by anyone who wants to download my code and try this for themselves. I set options within my script to use the weights directly from my github link by storing them as a temp file which is deleted when the program termines. Lastly, I coded the program to utilize the system's GPU if it's available as it offers better performance compared to the CPU. 
 
 <details>
   <summary>🔹Click for Code</summary>
@@ -352,13 +354,11 @@ selected_image_for_processing = 1                         #
   ```
 </details>
 
-The script automatically loads the appropriate picture using a link to my github (no need to download the picture). The image is read from the URL in a raw byte data form, where the information regarding the image's colors cannot be interpreted by a human or the AI model. I converted each of these raw bytes to an integer using numpy arrays. That way, the information for the colors of each image was represented by a number (0-255 BGR form, converted to RGB) that could be used to display the image, and also to be processed by the AI model. It is important to note that this decoding process resulted in a flattened 1-D array where the Red, Green and Blue values for each pixel were scattered and not colleceted into individual packets of [Red,Green,Blue]. In order to reformat these numbers in a way that would allow me to display and analyze each image using AI, I used CV2.
+By default, the model is coded to showcase its abilities on a stock set of images, which it automatically loads using a link to my github. The selected image is read from the URL in a raw byte data form, where the information regarding the image's colors cannot be interpreted by neither a human nor the AI model. I converted each of these raw bytes to an integer using numpy arrays. That way, the information for the colors of each image was represented by a number (0-255 BGR form, converted to RGB) that could be used to display the image, and also to be processed by the AI model. It is important to note that this decoding process resulted in a flattened 1-D array where the Red, Green and Blue values for each pixel were listed in succession and not colleceted into individual packets of [Red,Green,Blue]. In order to reformat these numbers in a way that would allow me to display and analyze each image using AI, I used CV2.
 
 I provided CV2 with the above decoded integer RGB values representing the image, and it created an outter array of dimensions equal to the image's resolution (for example for a 640x640 pixel image, the corresponding CV2 array would have 640 columns and 640 rows). Each entry in this outter array represented each of the picture's pixels. Each one of these entries (each pixel), was defined as an individual list of 3 elements. Element 1 was the intensity of Red color for that pixel. Element 2 was the intensity of Green color for that pixel, and element 3 was the intensity of Blue color for that pixel. Thus, each entry of the outter 640 x 640 array represented the color for each pixel in the given image. This is a very important detail, as it means that the image was represented by a tensor. 
 
-After this important converson, I defined a function which set all the graph and animation parameters for the specific picture. The selected and reformated image is presented to the user every time the script is ran.
-
-NOTE: to allow the program to continue, any plot that pops up needs to be closed first. 
+After this important converson, I defined a function which set all the graph and animation parameters for the specific picture. The selected and reformated image is presented to the user every time the script is ran. To allow the program to continue, any plot that pops up needs to be closed first. 
 
 <details>
   <summary>🔹Click for Code</summary>
@@ -444,7 +444,7 @@ NOTE: to allow the program to continue, any plot that pops up needs to be closed
 
 After the image's conversion to a tensor, I changed its dimensions to 640x640 again using CV2, so that YOLOv8_seg would be able to analyze it. Usually, AI models are made to analyze lists of vectors (tensors). This is why it is very important that I converted my images to tensors before feeding them into the AI model.
 
-I converted my image tensor into a pytorch tensor. While doing so, I defined the RGB values first, then the number of tensor columns, then the number of tensor's rows (it does not change the RGB number values, but it does change the order they appear in the tensor itself. It rearranges the tensor in a non-inutitive way that is required for the model to read the data). I also defined the RGB values as decimals (float) so that the model would get a more accurate understading of my pictures' colors. I defined the reformatted tensor as a batch of size 1 (also a technical requirement for my model to be able to process the data). Lastly, I divided the tensor by 255 in order to have the range of RGB values describing the image set between 0 and 1 (last technical requirement for the model). 
+I converted my image tensor into a pytorch tensor. While doing so, I defined the RGB values first, then the number of tensor columns, then the number of tensor's rows. This does not change the RGB number values, but it does change the order they appear in the tensor itself. It rearranges the tensor in a non-inutitive way that is required for the model to read the data. I also defined the RGB values as decimals (float) so that the model would get a more accurate understading of my pictures' colors. I defined the reformatted tensor as a batch of size 1 (also a technical requirement for my model to be able to process the data). Lastly, I divided the tensor by 255 in order to have the range of RGB values describing the image set between 0 and 1 (last technical requirement for the model). 
 
 These are very important parameters that the model needs to have defined correctly, in order to be able to analyze the picture.
 
